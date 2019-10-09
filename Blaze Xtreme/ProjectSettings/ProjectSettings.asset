@@ -566,6 +566,7 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Collab: 1
     UNet: 1
   luminIcon:
     m_Name: 
@@ -588,7 +589,7 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   cloudProjectId: a043654e-f6f7-474e-b055-b9db447fe282
   framebufferDepthMemorylessMode: 0
-  projectName: Blaze Xtreme (1)
+  projectName: Blaze Xtreme
   organizationId: pontif-cia-universidade-cat-lica-campinas
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
