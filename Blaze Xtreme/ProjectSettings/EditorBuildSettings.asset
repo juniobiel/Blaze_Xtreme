@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Cenas/Menu.unity
     guid: 3812f139b2ff0544fa588902c8ea6c36
+  - enabled: 1
+    path: Assets/Cenas/SelecionarPersonagem.unity
+    guid: 2e8aa1ad4fcb4a447990b96d78fb9843
+  - enabled: 1
+    path: Assets/Cenas/Controles.unity
+    guid: f168faf2b0ac5914db1cd0e513da909f
   m_configObjects: {}
