@@ -5,20 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public AudioSource musicaMenu;
 
     public void onClickJogar()
     {
         SceneManager.LoadScene("SelecionarPersonagem", LoadSceneMode.Single);
+        DontDestroyOnLoad(musicaMenu);
+    }
+
+    public void onClickControles()
+    {
+        SceneManager.LoadScene("Controles", LoadSceneMode.Single);
+        DontDestroyOnLoad(musicaMenu);
     }
 }

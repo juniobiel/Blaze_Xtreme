@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ControlesScript : MonoBehaviour
+public class SelecionarPersonagemScript : MonoBehaviour
 {
     public void onClickVoltar()
     {
