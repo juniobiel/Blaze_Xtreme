@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Taeda_Andar-Lado
+  m_Name: Taeda_Parado
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,15 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: f013cc23636624447859815f0232b97c, type: 3}
-    - time: 0.25
-      value: {fileID: 21300000, guid: 220dbcea0ef35b14fa71c838ae49475b, type: 3}
-    - time: 0.5833333
-      value: {fileID: 21300000, guid: f013cc23636624447859815f0232b97c, type: 3}
-    - time: 0.9166667
-      value: {fileID: 21300000, guid: c7a8834a3fcd7c14297e222a1508f88a, type: 3}
-    - time: 1.25
-      value: {fileID: 21300000, guid: c7a8834a3fcd7c14297e222a1508f88a, type: 3}
+      value: {fileID: 21300000, guid: 4eccdfc1b2fce614f8706659bd704577, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,17 +40,13 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: f013cc23636624447859815f0232b97c, type: 3}
-    - {fileID: 21300000, guid: 220dbcea0ef35b14fa71c838ae49475b, type: 3}
-    - {fileID: 21300000, guid: f013cc23636624447859815f0232b97c, type: 3}
-    - {fileID: 21300000, guid: c7a8834a3fcd7c14297e222a1508f88a, type: 3}
-    - {fileID: 21300000, guid: c7a8834a3fcd7c14297e222a1508f88a, type: 3}
+    - {fileID: 21300000, guid: 4eccdfc1b2fce614f8706659bd704577, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.2666667
+    m_StopTime: 0.016666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
