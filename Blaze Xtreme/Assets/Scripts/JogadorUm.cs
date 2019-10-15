@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class JogadorUm : MonoBehaviour
 {
+    //Movimentação do Personagem
     private float x, y, moduloVelocidade;
-    
     public GameObject jogadorGrafico;
     private Animator animacaoJogador;
     public Rigidbody2D jogadorUm;
+    //Propriedades do personagem
+    private int vidaJogador, energiaJogador;
+
+    //contador de tempo
+    float contTimerEnergia = 0f;
+    
     
     void Start()
     {
+        vidaJogador = 100;
+        energiaJogador = 0;
         animacaoJogador = jogadorGrafico.GetComponent<Animator>();
         jogadorUm = this.GetComponent<Rigidbody2D>();
 
@@ -22,6 +30,16 @@ public class JogadorUm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //configurar barra de energia
+        //barra de energia deve ser um elemento separado da barra de vida
+        contTimerEnergia += Time.deltaTime;
+        if(contTimerEnergia >= 5.0f)
+        {
+            energiaJogador++;
+            if (energiaJogador > 3) energiaJogador = 3;
+            contTimerEnergia = 0;
+        }
+
         //Configs movimentação
         x = Input.GetAxis("HORIZONTAL0");
         y = Input.GetAxis("VERTICAL0");
