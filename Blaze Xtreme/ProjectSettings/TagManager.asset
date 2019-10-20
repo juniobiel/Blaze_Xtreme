@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - GerenciadorAudioMenu
+  - Taed
+  - inimigo
+  - Taeda_Dominacao
   layers:
   - Default
   - TransparentFX

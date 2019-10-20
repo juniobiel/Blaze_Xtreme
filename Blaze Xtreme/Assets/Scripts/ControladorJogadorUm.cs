@@ -11,7 +11,9 @@ public class ControladorJogadorUm : MonoBehaviour
     public Movimentacao movimentacao;
     public float x;
     public float y;
-    //Movimentação do Personagem
+    private bool atack = false;
+    public Transform hitBox;
+    public GameObject hitBoxPrefab;
     
     
     void Start()
@@ -29,36 +31,51 @@ public class ControladorJogadorUm : MonoBehaviour
     {
         x = Input.GetAxis("HORIZONTAL0");
         y = Input.GetAxis("VERTICAL0");
-        movimentacao.EstaParado(x, y);
-        movimentacao.AndarPraBaixo(x, y);
-        movimentacao.AndarPraCima(x, y);
-        movimentacao.AndarPraEsquerda(x, y);
-        movimentacao.AndarPraDireita(x, y);
+        if (atack == false)
+        {
+            movimentacao.EstaParado(x, y);
+            movimentacao.AndarPraBaixo(x, y);
+            movimentacao.AndarPraCima(x, y);
+            movimentacao.AndarPraEsquerda(x, y);
+            movimentacao.AndarPraDireita(x, y);
+        }
 
 
 
 
 
 
-        //if (Input.GetButtonDown("AZUL0"))
-        //{
-        //    animacaoJogador.SetTrigger("habilidade-Um");
-        //}
+        if (Input.GetButtonDown("AZUL0") && atack == false)
+        {
+            atack = true;
+            controladorJogador.velocity = new Vector2(0, 0);
+            animacaoJogador.SetTrigger("habilidade-Um");
+        }
 
-        ////configurar barra de energia
-        ////barra de energia deve ser um elemento separado da barra de vida
-        //contTimerEnergia += Time.deltaTime;
-        //if (contTimerEnergia >= 5.0f)
-        //{
-        //    barraEnergia++;
-        //    if (barraEnergia > 3) barraEnergia = 3;
-        //    contTimerEnergia = 0;
-        //}
+    }
 
-        //Configs movimentação
-        //x = Input.GetAxis("HORIZONTAL0");
-        //y = Input.GetAxis("VERTICAL0");
-        //moduloVelocidade = 2.0f;
+    public void OnHitBox()
+    {
+       GameObject hit = Instantiate(hitBoxPrefab, hitBox.position, hitBox.localRotation);
+        Destroy(hit.gameObject, 0.03f);
+    }
 
+    public void NoFimDoAtaque()
+    {
+        atack = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        switch (col.gameObject.tag)
+        {
+        case "inimigo":
+            animacaoJogador.SetTrigger("toma-Hit");
+        break;
+
+        case "vida":
+
+        break;
+        }
     }
 }

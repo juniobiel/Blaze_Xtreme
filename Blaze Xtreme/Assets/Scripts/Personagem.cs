@@ -4,41 +4,6 @@ using UnityEngine;
 
 public class Personagem : MonoBehaviour
 {
-    public GameObject controladorPersonagem;
-    public class Taeda : Personagem
-    {
-        public int energia = 3;
-        public class HabilidadeUm : Taeda
-        {
-            public int damage = 7;
-            public int energiaUsada = 1;
-            public GameObject spritePoderHabilidadeUm;
-
-            public void InvocarHabilidadeUm()
-            {
-                float posicaoX = controladorPersonagem.gameObject.transform.position.x;
-                float posicaoY = controladorPersonagem.gameObject.transform.position.y;
-                spritePoderHabilidadeUm = Instantiate(spritePoderHabilidadeUm, new Vector2(posicaoX + 1.0f, posicaoY)
-                    , Quaternion.identity);
-            }
-        }
-
-        public class HabilidadeDois : Taeda
-        {
-            public int damage = 12;
-            public int energiaUsada = 2;
-            public GameObject spritePoderHabilidadeDois;
-        }
-
-        public class HabilidadeTres : Taeda
-        {
-            public int damage = 17;
-            public int energiaUsada = 3;
-            public GameObject spritePoderHabilidadeTres;
-        }
-
-    }
-
     public class Movimentacao
     {
         public GameObject personagem;
