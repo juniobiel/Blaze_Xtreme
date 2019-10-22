@@ -14,6 +14,9 @@ public class ControladorJogadorUm : MonoBehaviour
     private bool atack = false;
     public Transform hitBox;
     public GameObject hitBoxPrefab;
+	public int vida = 100;
+	public int pontos = 0;
+
     
     
     void Start()
@@ -21,6 +24,7 @@ public class ControladorJogadorUm : MonoBehaviour
         movimentacao = new Movimentacao(personagem, animacaoJogador, controladorJogador);
         //Define o jogador Parado
         movimentacao.animacaoJogador.SetBool("esta-Parado", true);
+
       
 
 
@@ -39,12 +43,7 @@ public class ControladorJogadorUm : MonoBehaviour
             movimentacao.AndarPraEsquerda(x, y);
             movimentacao.AndarPraDireita(x, y);
         }
-
-
-
-
-
-
+			
         if (Input.GetButtonDown("AZUL0") && atack == false)
         {
             atack = true;
@@ -57,7 +56,7 @@ public class ControladorJogadorUm : MonoBehaviour
     public void OnHitBox()
     {
        GameObject hit = Instantiate(hitBoxPrefab, hitBox.position, hitBox.localRotation);
-        Destroy(hit.gameObject, 0.03f);
+       Destroy(hit.gameObject, 0.03f);
     }
 
     public void NoFimDoAtaque()
@@ -71,6 +70,7 @@ public class ControladorJogadorUm : MonoBehaviour
         {
         case "inimigo":
             animacaoJogador.SetTrigger("toma-Hit");
+			vida -= 20;
         break;
 
         case "vida":

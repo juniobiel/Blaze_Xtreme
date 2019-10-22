@@ -2,24 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Personagem : MonoBehaviour
+public class Hoshigake : MonoBehaviour
 {
-	public int vida;
-    
-	public class Movimentacao
-    {
-        public GameObject personagem;
+     public GameObject personagem;
         public Animator animacaoJogador;
         public Rigidbody2D controladorJogador;
         public float moduloVelocidade = 2.0f;
-
-        public Movimentacao(GameObject personagem, Animator animacaoJogador, Rigidbody2D controladorJogador)
+  
+       
+        public Hoshigake(GameObject personagem, Animator animacaoJogador, Rigidbody2D controladorJogador)
         {
             this.personagem = personagem;
             this.animacaoJogador = animacaoJogador;
             this.controladorJogador = controladorJogador;
         }
-      
+
+
         public void EstaParado(float x, float y)
         {
             //Esta parado
@@ -108,5 +106,5 @@ public class Personagem : MonoBehaviour
                 }
             }
         }
-    }
+    
 }
