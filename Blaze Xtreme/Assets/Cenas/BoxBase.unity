@@ -299,6 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59934e9497af7914f8316231935915cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: 0
 --- !u!61 &128685643
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -382,6 +383,8 @@ MonoBehaviour:
   hitBox: {fileID: 1244248883}
   hitBoxPrefab: {fileID: 8073736324794446220, guid: 24db5bb8d599d8243810da9d22c10470,
     type: 3}
+  vida: 100
+  pontos: 0
 --- !u!1 &260254153
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,7 +838,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783354656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.229939, y: 0.6866311, z: -0.14453125}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
