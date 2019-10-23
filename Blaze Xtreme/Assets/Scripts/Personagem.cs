@@ -9,15 +9,67 @@ public class Personagem : MonoBehaviour
     private int intVida;
     private int intEnergia;
     private Animator anAnimacaoJogador;
+    private Rigidbody2D rgbdControladorJogador;
+    private Transform goHitBox;
+    private GameObject prefabHitBox;
 
-    void setAnimatorPersonagem(Animator animacaoJogador)
+    public Personagem() { }
+    public Personagem(string Nome)
+    {
+        this.strNome = Nome;
+    }
+
+    
+
+    public int getIntEnergia()
+    {
+        return this.intEnergia;
+    }
+
+    public void setIntEnergia(int energia)
+    {
+        this.intEnergia = energia;
+    }
+
+    public void setprefabHitBox(GameObject prefabHitBox)
+    {
+        this.prefabHitBox = prefabHitBox;
+    }
+
+    public void setgoHitBox(Transform goHitBox)
+    {
+        this.goHitBox = goHitBox;
+    }
+
+    public void setRGBDControladorJogador(Rigidbody2D rgbdControladorJogador)
+    {
+        this.rgbdControladorJogador = rgbdControladorJogador;
+    }
+
+    public void setAnimatorPersonagem(Animator animacaoJogador)
     {
         this.anAnimacaoJogador = animacaoJogador;
     }
 
-    void HabilidadeUm()
+    public class HabilidadeUm : Personagem
     {
-        anAnimacaoJogador.SetTrigger("habilidade-Um");
+        private int dano;
+
+        void setDano(int dano)
+        {
+            this.dano = dano;
+        }
+        void ataqueDominacao()
+        {
+            anAnimacaoJogador.SetTrigger("habilidade-Um");
+        }
+
+        void gastarEnergia(int energia)
+        {
+            int energiaAtual = getIntEnergia();
+            energiaAtual -= energia;
+            setIntEnergia(energiaAtual);
+        }
     }
     //void HabilidadeDois();
     //void HabilidadeTres();
@@ -37,7 +89,7 @@ public class Personagem : MonoBehaviour
             this.animacaoJogador = animacaoJogador;
             this.controladorJogador = controladorJogador;
         }
-      
+
         public void EstaParado(float x, float y)
         {
             //Esta parado
