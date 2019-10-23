@@ -5,23 +5,24 @@ using static Personagem;
 
 public class ControladorJogadorUm : MonoBehaviour
 {
+    public Movimentacao sMovimentacao;
     public GameObject personagem;
     public Animator animacaoJogador;
     public Rigidbody2D controladorJogador;
-    public Movimentacao movimentacao;
+    
     public float x;
     public float y;
     public bool atack = false;
     public Transform hitBox;
     public GameObject hitBoxPrefab;
-
+    float vida;
     
     
     void Start()
     {
-        movimentacao = new Movimentacao(personagem, animacaoJogador, controladorJogador);
+        sMovimentacao = new Movimentacao(personagem, animacaoJogador, controladorJogador);
         //Define o jogador Parado
-        movimentacao.animacaoJogador.SetBool("esta-Parado", true);
+        sMovimentacao.animacaoJogador.SetBool("esta-Parado", true);
 
     }
 
@@ -32,11 +33,11 @@ public class ControladorJogadorUm : MonoBehaviour
         y = Input.GetAxis("VERTICAL0");
         if (atack == false)
         {
-            movimentacao.EstaParado(x, y);
-            movimentacao.AndarPraBaixo(x, y);
-            movimentacao.AndarPraCima(x, y);
-            movimentacao.AndarPraEsquerda(x, y);
-            movimentacao.AndarPraDireita(x, y);
+            sMovimentacao.EstaParado(x, y);
+            sMovimentacao.AndarPraBaixo(x, y);
+            sMovimentacao.AndarPraCima(x, y);
+            sMovimentacao.AndarPraEsquerda(x, y);
+            sMovimentacao.AndarPraDireita(x, y);
         }
 			
         if (Input.GetButtonDown("AZUL0") && atack == false)

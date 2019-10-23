@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Hoshigake : MonoBehaviour
 {
-     public GameObject personagem;
+    public int vida;
+
+    public class Movimentacao
+    {
+        public GameObject Hoshigake;
         public Animator animacaoJogador;
         public Rigidbody2D controladorJogador;
         public float moduloVelocidade = 2.0f;
-  
-       
-        public Hoshigake(GameObject personagem, Animator animacaoJogador, Rigidbody2D controladorJogador)
+
+        public Movimentacao(GameObject personagem, Animator animacaoJogador, Rigidbody2D controladorJogador)
         {
-            this.personagem = personagem;
+            this.Hoshigake = personagem;
             this.animacaoJogador = animacaoJogador;
             this.controladorJogador = controladorJogador;
         }
-
 
         public void EstaParado(float x, float y)
         {
@@ -83,7 +85,7 @@ public class Hoshigake : MonoBehaviour
                     animacaoJogador.SetBool("andar-Direita", false);
 
                     controladorJogador.velocity = new Vector2(x, y) * moduloVelocidade;
-                    personagem.GetComponent<SpriteRenderer>().flipX = true;
+                    Hoshigake.GetComponent<SpriteRenderer>().flipX = true;
                 }
             }
         }
@@ -102,9 +104,9 @@ public class Hoshigake : MonoBehaviour
                     animacaoJogador.SetBool("andar-Esquerda", false);
 
                     controladorJogador.velocity = new Vector2(x, y) * moduloVelocidade;
-                    personagem.GetComponent<SpriteRenderer>().flipX = false;
+                    Hoshigake.GetComponent<SpriteRenderer>().flipX = false;
                 }
             }
         }
-    
+    }
 }

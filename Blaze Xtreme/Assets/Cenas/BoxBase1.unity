@@ -379,6 +379,7 @@ MonoBehaviour:
   controladorJogador: {fileID: 128685645}
   x: 0
   y: 0
+  atack: 0
   hitBox: {fileID: 1244248883}
   hitBoxPrefab: {fileID: 8073736324794446220, guid: 24db5bb8d599d8243810da9d22c10470,
     type: 3}
@@ -718,9 +719,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470274266}
-  - component: {fileID: 470274265}
-  - component: {fileID: 470274268}
   - component: {fileID: 470274267}
+  - component: {fileID: 470274268}
+  - component: {fileID: 470274265}
+  - component: {fileID: 470274272}
+  - component: {fileID: 470274271}
+  - component: {fileID: 470274270}
+  - component: {fileID: 470274269}
   m_Layer: 0
   m_Name: Jogador2
   m_TagString: Untagged
@@ -740,10 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ef79f9d51fb7746bfc80de01957ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personagem: {fileID: 0}
-  animacaoJogador: {fileID: 0}
-  controladorJogador: {fileID: 0}
-  moduloVelocidade: 0
+  vida: 0
 --- !u!4 &470274266
 Transform:
   m_ObjectHideFlags: 0
@@ -752,8 +754,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470274264}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.64, y: 0.27, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.29, y: -0.25, z: 0}
+  m_LocalScale: {x: 1.303609, y: 1.3487624, z: 1}
   m_Children:
   - {fileID: 2140685265}
   m_Father: {fileID: 0}
@@ -795,8 +797,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 21300000, guid: 4add61d264c24c9428d9ab497614b587, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -826,6 +828,89 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &470274269
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470274264}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 2.2222223, y: 2.2222223}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7, y: 1.79}
+  m_EdgeRadius: 0
+--- !u!58 &470274270
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470274264}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.5}
+  serializedVersion: 2
+  m_Radius: 0.35
+--- !u!50 &470274271
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470274264}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &470274272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470274264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e94b9a7099e014b8912bcf404edc11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  personagem: {fileID: 470274264}
+  animacaoJogador: {fileID: 470274268}
+  controladorJogador: {fileID: 470274271}
+  x: 0
+  y: 0
+  atack: 0
+  hitBox: {fileID: 0}
+  hitBoxPrefab: {fileID: 0}
 --- !u!1001 &485753681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1918,10 +2003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da082a0c5467ff841af78c72d6d54594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPrefab: {fileID: 1553850248}
-  playerObject: {fileID: 128685638}
-  prefabZumbi: {fileID: 3723870060084514168, guid: 81cd04015cfb76741b9c467d753e3e23,
-    type: 3}
+  hitPrefab: {fileID: 0}
   speed: 1.3
 --- !u!1001 &1602038528
 PrefabInstance:

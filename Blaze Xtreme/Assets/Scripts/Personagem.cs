@@ -4,13 +4,32 @@ using UnityEngine;
 
 public class Personagem : MonoBehaviour
 {
-	
-	public class Movimentacao
+
+    private string strNome;
+    private int intVida;
+    private int intEnergia;
+    private Animator anAnimacaoJogador;
+
+    void setAnimatorPersonagem(Animator animacaoJogador)
+    {
+        this.anAnimacaoJogador = animacaoJogador;
+    }
+
+    void HabilidadeUm()
+    {
+        anAnimacaoJogador.SetTrigger("habilidade-Um");
+    }
+    //void HabilidadeDois();
+    //void HabilidadeTres();
+
+
+    public class Movimentacao
     {
         public GameObject personagem;
         public Animator animacaoJogador;
         public Rigidbody2D controladorJogador;
         public float moduloVelocidade = 2.0f;
+
 
         public Movimentacao(GameObject personagem, Animator animacaoJogador, Rigidbody2D controladorJogador)
         {
