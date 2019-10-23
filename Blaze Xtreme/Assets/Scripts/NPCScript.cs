@@ -1,34 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static HUDScript;
 
 public class NPCScript : MonoBehaviour
 {
-    //public GameObject hitPrefab; //prefab com animação do Zumbi ao Levar dano
-     GameObject playerObject;
-    //public GameObject prefabZumbi;
+    public GameObject hitPrefab; //prefab com animação do Zumbi ao Levar dano
+    GameObject playerObject;
     public float speed = 1.3f;
 
     float playerPositionX;
     float playerPositionY;
-    float contTimer = 0;
+    HUDPontos sPontos;
 
     void Start()
     {
-        //playerPositionX = playerObject.gameObject.transform.position.x;
-        //playerPositionY = playerObject.gameObject.transform.position.y;
         playerObject = GameObject.FindWithTag("Player");
+        sPontos = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUDPontos>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       // contTimer += Time.deltaTime;
-       // if (contTimer >= 6.0f)
-       // {
-        //    Instantiate(prefabZumbi, new Vector2(5, -5), Quaternion.identity);
-        //    contTimer -= contTimer;
-       // }
         playerPositionX = playerObject.gameObject.transform.position.x;
         playerPositionY = playerObject.gameObject.transform.position.y;
 
@@ -44,15 +37,16 @@ public class NPCScript : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position,new Vector2(playerPositionX, playerPositionY) , speed * Time.deltaTime);
     }
 
-  //  void OnTriggerEnter2D(Collider2D col)
-    //{
-      //  switch (col.gameObject.tag)
-       // {
-          //  case "Taeda_Dominacao":
-              //  GameObject temp = Instantiate(hitPrefab, transform.position, transform.localRotation);
-              //  Destroy(temp.gameObject, 0.5f); //tempo da animação do zumbi
-              //  Destroy(this.gameObject);
-               // break;
-       // }
-   // }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        switch (col.gameObject.tag)
+        {
+            case "Taeda_Dominacao":
+                GameObject temp = Instantiate(hitPrefab, transform.position, transform.localRotation);
+                Destroy(temp.gameObject, 0.5f); //tempo da animação do zumbi
+                Destroy(this.gameObject);
+                sPontos.SetPontos(3);
+                break;
+        }
+    }
 }

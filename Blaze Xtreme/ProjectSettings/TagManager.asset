@@ -8,6 +8,7 @@ TagManager:
   - Taed
   - inimigo
   - Taeda_Dominacao
+  - HUD
   layers:
   - Default
   - TransparentFX

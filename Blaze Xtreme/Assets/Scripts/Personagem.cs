@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Personagem : MonoBehaviour
 {
-	public int vida;
-    
+	
 	public class Movimentacao
     {
         public GameObject personagem;

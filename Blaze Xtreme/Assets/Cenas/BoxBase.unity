@@ -299,7 +299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59934e9497af7914f8316231935915cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 0
 --- !u!61 &128685643
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -313,7 +312,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017720371, y: 1.2888602}
+  m_Offset: {x: -0.017720379, y: 1.2888602}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -324,7 +323,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75252944, y: 2.2941954}
+  m_Size: {x: 0.5022786, y: 2.2941954}
   m_EdgeRadius: 0
 --- !u!58 &128685644
 CircleCollider2D:
@@ -380,11 +379,10 @@ MonoBehaviour:
   controladorJogador: {fileID: 128685645}
   x: 0
   y: 0
+  atack: 0
   hitBox: {fileID: 1244248883}
   hitBoxPrefab: {fileID: 8073736324794446220, guid: 24db5bb8d599d8243810da9d22c10470,
     type: 3}
-  vida: 100
-  pontos: 0
 --- !u!1 &260254153
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,9 +610,10 @@ GameObject:
   - component: {fileID: 425905733}
   - component: {fileID: 425905735}
   - component: {fileID: 425905734}
+  - component: {fileID: 425905736}
   m_Layer: 5
   m_Name: PlaquetaPontos
-  m_TagString: Untagged
+  m_TagString: HUD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -676,6 +675,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425905732}
   m_CullTransparentMesh: 0
+--- !u!114 &425905736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425905732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94668c65802fc5d4ebad129823c2f0df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goTxtPontos: {fileID: 1927364651}
 --- !u!4 &446755538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2290769179681694422, guid: 1402aac32cbedfd4d988aa386487e36f,
@@ -1789,7 +1801,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: '-'
 --- !u!222 &1927364652
 CanvasRenderer:
   m_ObjectHideFlags: 0
