@@ -5,6 +5,7 @@ using static Personagem;
 
 public class ControladorJogadorUm : MonoBehaviour
 {
+    //Necessita arrumar as variáveis e as dependecias do codigo.
     public Movimentacao sMovimentacao;
     public GameObject personagem;
     public Animator animacaoJogador;
