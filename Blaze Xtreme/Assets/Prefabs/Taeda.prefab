@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 650541506356939404}
   m_Layer: 0
-  m_Name: TaedaHitBox1
+  m_Name: hitBox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 650541506356939405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1.23, z: 0}
+  m_LocalPosition: {x: 0.93, y: 1.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 650541507523094520}
@@ -64,6 +64,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 650541506356939404}
+  - {fileID: 1216079046940548752}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -106,7 +107,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 4eccdfc1b2fce614f8706659bd704577, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.56, y: 2.56}
@@ -149,8 +150,12 @@ MonoBehaviour:
   prefabPersonagem: {fileID: 650541507523094521}
   anAnimacaoJogador: {fileID: 650541507523094519}
   rgbdControladorJogador: {fileID: 650541507523094514}
-  trHitBoxUm: {fileID: 0}
-  prefabHitBoxUm: {fileID: 0}
+  trHitBoxUm: {fileID: 650541506356939404}
+  prefabHitBoxUm: {fileID: 7484108523516123417, guid: a92f90a106748ac41972d0bf90708f29,
+    type: 3}
+  trHitBoxEsquerda: {fileID: 1216079046940548752}
+  prefabHitBoxUmEsquerda: {fileID: 8907991644752199010, guid: b17bffde9ee6fda4a98bdf67c837c0c2,
+    type: 3}
 --- !u!50 &650541507523094514
 Rigidbody2D:
   serializedVersion: 4
@@ -214,3 +219,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5022786, y: 2.2941954}
   m_EdgeRadius: 0
+--- !u!1 &5961588882905490423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1216079046940548752}
+  m_Layer: 0
+  m_Name: hitBox1Esquerda
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1216079046940548752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5961588882905490423}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.91, y: 1.1650332, z: 0.17795965}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 650541507523094520}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

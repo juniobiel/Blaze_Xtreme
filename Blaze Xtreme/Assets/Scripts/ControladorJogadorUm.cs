@@ -8,6 +8,7 @@ public class ControladorJogadorUm : MonoBehaviour
     private Personagem personagemJogadorUm;
     private Movimentacao sptMovimentacaoPersonagemUm;
     public GameObject prefabPersonagemUm;
+    float contTimerEnergia;
     public float x;
     public float y;
     
@@ -19,6 +20,7 @@ public class ControladorJogadorUm : MonoBehaviour
         personagemJogadorUm.InstanciarPersonagem("Taeda");
         sptMovimentacaoPersonagemUm = new Movimentacao(personagemJogadorUm);
         sptMovimentacaoPersonagemUm.SetFlModuloVelocidade(2.0f);
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>().AdicionarPlayers(personagemJogadorUm.transform);
 
         //Define o jogador Parado
         sptMovimentacaoPersonagemUm.EstaParado(x, y);
@@ -26,8 +28,16 @@ public class ControladorJogadorUm : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        contTimerEnergia += Time.deltaTime;
+        
+        if(contTimerEnergia >= 6.0f)
+        {
+            personagemJogadorUm.RecarregaEnergia();
+            contTimerEnergia -= contTimerEnergia;
+        }
+
         x = Input.GetAxis("HORIZONTAL0");
         y = Input.GetAxis("VERTICAL0");
         if (!personagemJogadorUm.GetBlAttack())
@@ -46,6 +56,7 @@ public class ControladorJogadorUm : MonoBehaviour
             personagemJogadorUm.GetAnimatorPersonagem().SetTrigger("habilidade-Um");
         }
 
+        
     }
 
     

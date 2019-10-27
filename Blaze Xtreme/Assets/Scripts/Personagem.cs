@@ -13,8 +13,15 @@ public class Personagem : MonoBehaviour
     public Rigidbody2D rgbdControladorJogador;
     public Transform trHitBoxUm; //Habilidade
     public GameObject prefabHitBoxUm; //Habilidade
+    public Transform trHitBoxEsquerda;
+    public GameObject prefabHitBoxUmEsquerda;
     private bool blAttack = false;
+    private float flDanoHabilidadeUm;
 
+    public float GetFlDanoHabilidadeUm()
+    {
+        return this.flDanoHabilidadeUm;
+    }
 
     public void SetBlAttack(bool attack)
     {
@@ -105,8 +112,9 @@ public class Personagem : MonoBehaviour
         this.intVida = 3;
         this.flBarraHP = 100.0f;
         prefabPersonagem = gameObject;
-        anAnimacaoJogador = gameObject.GetComponent<Animator>();
-        rgbdControladorJogador = gameObject.GetComponent<Rigidbody2D>();
+        anAnimacaoJogador = this.gameObject.GetComponent<Animator>();
+        rgbdControladorJogador = this.gameObject.GetComponent<Rigidbody2D>();
+        flDanoHabilidadeUm = 27.25f;
     }
     public void RecarregaEnergia()
     {
@@ -116,7 +124,19 @@ public class Personagem : MonoBehaviour
 
     public void OnHitBox()
     {
-        GameObject hit = Instantiate(prefabHitBoxUm, trHitBoxUm);
+        if (GameObject.FindGameObjectWithTag("Taeda").GetComponent<SpriteRenderer>().flipX == true)
+        {
+            GameObject hitEsquerda = Instantiate(prefabHitBoxUmEsquerda, trHitBoxEsquerda.position, trHitBoxEsquerda.localRotation);
+            Destroy(hitEsquerda.gameObject, 0.5f);
+        }
+        else if(GameObject.FindGameObjectWithTag("Taeda").GetComponent<SpriteRenderer>().flipX == false)
+        {
+            GameObject hitDireita = Instantiate(prefabHitBoxUm, trHitBoxUm.position, trHitBoxUm.localRotation);
+            Destroy(hitDireita.gameObject, 0.5f);
+        }
+
+
+        
     }
 
     public void FimDoAtaque()
@@ -129,10 +149,16 @@ public class Personagem : MonoBehaviour
         switch (col.gameObject.tag)
         {
             case "inimigo":
-                anAnimacaoJogador.SetTrigger("toma-hit");
-                //ver aula em que o professor fez a barra de hp no slide
-                flBarraHP -= gameObject.GetComponent<ZumbiNPC>().GetFlDano();
+                blAttack = false;
+                float danoZumbi = GameObject.FindGameObjectWithTag("inimigo").GetComponent<ZumbiNPC>().GetFlDano();
+                this.anAnimacaoJogador.SetTrigger("toma-Hit");                
+                TomaDanoZumbi(danoZumbi);
                 break;
         }
+    }
+
+    private void TomaDanoZumbi(float damage)
+    {
+        this.flBarraHP -= damage;
     }
 }
