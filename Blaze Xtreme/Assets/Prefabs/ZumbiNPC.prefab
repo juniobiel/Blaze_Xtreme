@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3723870060084514172}
   - component: {fileID: 3723870060084514171}
+  - component: {fileID: 1772521444185629}
   - component: {fileID: 3723870060084514170}
   - component: {fileID: 8963995929190609151}
-  - component: {fileID: 2660569888952985258}
   - component: {fileID: 7093588056145242295}
   m_Layer: 0
-  m_Name: zoombie2
+  m_Name: ZumbiNPC
   m_TagString: inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,6 +83,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1772521444185629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3723870060084514168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ee40ccc10add64cb1df122d1bbcd5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anZumbi: {fileID: 3723870060084514170}
+  goJogadorUm: {x: 0, y: 0}
 --- !u!95 &3723870060084514170
 Animator:
   serializedVersion: 3
@@ -118,21 +132,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.028469864, y: 0.5740253}
   m_Size: {x: 0.1586708, y: 0.70509464}
   m_Direction: 0
---- !u!114 &2660569888952985258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3723870060084514168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da082a0c5467ff841af78c72d6d54594, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitPrefab: {fileID: 8073736324794446220, guid: 24db5bb8d599d8243810da9d22c10470,
-    type: 3}
-  speed: 1.3
 --- !u!50 &7093588056145242295
 Rigidbody2D:
   serializedVersion: 4

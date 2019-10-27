@@ -11,19 +11,18 @@ public class Personagem : MonoBehaviour
     public GameObject prefabPersonagem;
     public Animator anAnimacaoJogador;
     public Rigidbody2D rgbdControladorJogador;
-    private Transform goHitBox; //Habilidade
-    private GameObject prefabHitBox; //Habilidade
+    public Transform trHitBoxUm; //Habilidade
+    public GameObject prefabHitBoxUm; //Habilidade
+    private bool blAttack = false;
 
-    private void Start()
+
+    public void SetBlAttack(bool attack)
     {
-        InstanciarPersonagem("Taeda");
+        this.blAttack = attack;
     }
-    public void InstanciarPersonagem(string nome)
+    public bool GetBlAttack()
     {
-        this.strNome = nome;
-        this.intEnergia = 0;
-        this.intVida = 3;
-        this.flBarraHP = 100.0f;
+        return this.blAttack;
     }
 
     public void SetStrNome(string nome)
@@ -34,19 +33,6 @@ public class Personagem : MonoBehaviour
     public string GetStrNome()
     {
         return this.strNome;
-    }
-
-    public void RecarregaEnergia()
-    {
-        float contTimer = 0f;
-
-        contTimer += Time.deltaTime;
-        if(contTimer >= 6.0f)
-        {
-            if (intEnergia <= 3)
-                intEnergia++;
-            contTimer -= contTimer;
-        }
     }
 
     public void SetIntVida(int vida)
@@ -86,12 +72,12 @@ public class Personagem : MonoBehaviour
 
     public void SetprefabHitBox(GameObject prefabHitBox)
     {
-        this.prefabHitBox = prefabHitBox;
+        this.prefabHitBoxUm = prefabHitBox;
     }
 
     public void SetgoHitBox(Transform goHitBox)
     {
-        this.goHitBox = goHitBox;
+        this.trHitBoxUm = goHitBox;
     }
 
     public Rigidbody2D GetRGBDControladorJogador()
@@ -111,5 +97,42 @@ public class Personagem : MonoBehaviour
     public Animator GetAnimatorPersonagem()
     {
         return this.anAnimacaoJogador;
+    }
+    public void InstanciarPersonagem(string nome)
+    {
+        this.strNome = nome;
+        this.intEnergia = 0;
+        this.intVida = 3;
+        this.flBarraHP = 100.0f;
+        prefabPersonagem = gameObject;
+        anAnimacaoJogador = gameObject.GetComponent<Animator>();
+        rgbdControladorJogador = gameObject.GetComponent<Rigidbody2D>();
+    }
+    public void RecarregaEnergia()
+    {
+        if (intEnergia <= 3)
+            intEnergia++;
+    }
+
+    public void OnHitBox()
+    {
+        GameObject hit = Instantiate(prefabHitBoxUm, trHitBoxUm);
+    }
+
+    public void FimDoAtaque()
+    {
+        this.blAttack = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        switch (col.gameObject.tag)
+        {
+            case "inimigo":
+                anAnimacaoJogador.SetTrigger("toma-hit");
+                //ver aula em que o professor fez a barra de hp no slide
+                flBarraHP -= gameObject.GetComponent<ZumbiNPC>().GetFlDano();
+                break;
+        }
     }
 }

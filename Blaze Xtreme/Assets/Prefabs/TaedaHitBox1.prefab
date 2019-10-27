@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5515551020053467158}
   - component: {fileID: 4004016458940354222}
   m_Layer: 0
-  m_Name: Taeda_Dominacao
-  m_TagString: Taeda_Dominacao
+  m_Name: TaedaHitBox1
+  m_TagString: hitBox1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

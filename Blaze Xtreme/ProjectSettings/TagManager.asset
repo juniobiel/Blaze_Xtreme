@@ -5,10 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - GerenciadorAudioMenu
-  - Taed
   - inimigo
-  - Taeda_Dominacao
   - HUD
+  - Taeda
+  - DefenseUm
+  - hitBox1
   layers:
   - Default
   - TransparentFX

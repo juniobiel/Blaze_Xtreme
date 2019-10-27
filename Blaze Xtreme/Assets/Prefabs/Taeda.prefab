@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 650541506356939404}
   m_Layer: 0
-  m_Name: Taeda_Dominacao
+  m_Name: TaedaHitBox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,8 +46,8 @@ GameObject:
   - component: {fileID: 650541507523094515}
   - component: {fileID: 650541507523094516}
   m_Layer: 0
-  m_Name: prefabTaeda
-  m_TagString: Player
+  m_Name: Taeda
+  m_TagString: Taeda
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,6 +149,8 @@ MonoBehaviour:
   prefabPersonagem: {fileID: 650541507523094521}
   anAnimacaoJogador: {fileID: 650541507523094519}
   rgbdControladorJogador: {fileID: 650541507523094514}
+  trHitBoxUm: {fileID: 0}
+  prefabHitBoxUm: {fileID: 0}
 --- !u!50 &650541507523094514
 Rigidbody2D:
   serializedVersion: 4
