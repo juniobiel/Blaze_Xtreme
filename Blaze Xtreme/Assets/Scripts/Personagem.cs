@@ -4,21 +4,54 @@ using UnityEngine;
 
 public class Personagem : MonoBehaviour
 {
-
     private string strNome;
     private int intVida;
     private int intEnergia;
     private float flBarraHP;
-    private GameObject prefabPersonagem;
-    private Animator anAnimacaoJogador;
-    private Rigidbody2D rgbdControladorJogador;
-    private Transform goHitBox;
-    private GameObject prefabHitBox;
+    public GameObject prefabPersonagem;
+    public Animator anAnimacaoJogador;
+    public Rigidbody2D rgbdControladorJogador;
+    private Transform goHitBox; //Habilidade
+    private GameObject prefabHitBox; //Habilidade
 
-    public Personagem() { }
-    public Personagem(string Nome)
+    private void Start()
     {
-        this.strNome = Nome;
+        InstanciarPersonagem("Taeda");
+    }
+    public void InstanciarPersonagem(string nome)
+    {
+        this.strNome = nome;
+        this.intEnergia = 0;
+        this.intVida = 3;
+        this.flBarraHP = 100.0f;
+    }
+
+    public void SetStrNome(string nome)
+    {
+        this.strNome = nome;
+    }
+
+    public string GetStrNome()
+    {
+        return this.strNome;
+    }
+
+    public void RecarregaEnergia()
+    {
+        float contTimer = 0f;
+
+        contTimer += Time.deltaTime;
+        if(contTimer >= 6.0f)
+        {
+            if (intEnergia <= 3)
+                intEnergia++;
+            contTimer -= contTimer;
+        }
+    }
+
+    public void SetIntVida(int vida)
+    {
+        this.intVida = vida;
     }
 
     public float GetFlBarraHP()

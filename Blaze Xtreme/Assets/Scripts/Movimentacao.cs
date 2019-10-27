@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movimentacao : MonoBehaviour
+public class Movimentacao : Personagem
 {
     Personagem sptPersonagem;
     private float flModuloVelocidade;
+    
+    public Movimentacao() { }
 
     public Movimentacao(Personagem sptPersonagem)
     {
@@ -110,5 +112,4 @@ public class Movimentacao : MonoBehaviour
             }
         }
     }
-}
 }

@@ -11,6 +11,7 @@ public class ControladorNPC : MonoBehaviour
          contTimer += Time.deltaTime;
         if (contTimer >= 6.0f)
          {
+            //Spawna Zumbi
             Instantiate(prefabZumbi, new Vector2(5, -5), Quaternion.identity);
             contTimer -= contTimer;
          }

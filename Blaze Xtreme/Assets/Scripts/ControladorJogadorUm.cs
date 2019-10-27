@@ -5,25 +5,26 @@ using static Personagem;
 
 public class ControladorJogadorUm : MonoBehaviour
 {
-    //Necessita arrumar as variáveis e as dependecias do codigo.
-    public Movimentacao sMovimentacao;
-    public GameObject personagem;
-    public Animator animacaoJogador;
-    public Rigidbody2D controladorJogador;
-    
+    private Personagem personagemJogadorUm;
+    private Movimentacao sptMovimentacaoPersonagemUm;
+    public GameObject prefabPersonagemUm;
     public float x;
     public float y;
-    public bool atack = false;
-    public Transform hitBox;
-    public GameObject hitBoxPrefab;
-    float vida;
+
+    //public bool atack = false;
+    //public Transform hitBox;
+    //public GameObject hitBoxPrefab;
     
     
     void Start()
     {
-        sMovimentacao = new Movimentacao(personagem, animacaoJogador, controladorJogador);
+        prefabPersonagemUm = Instantiate(prefabPersonagemUm, new Vector2(0, 0), Quaternion.identity);
+        personagemJogadorUm = prefabPersonagemUm.GetComponent<Personagem>();
+        sptMovimentacaoPersonagemUm = new Movimentacao(personagemJogadorUm);
+        sptMovimentacaoPersonagemUm.SetFlModuloVelocidade(2.0f);
+
         //Define o jogador Parado
-        sMovimentacao.animacaoJogador.SetBool("esta-Parado", true);
+        sptMovimentacaoPersonagemUm.EstaParado(x, y);
 
     }
 
@@ -32,50 +33,50 @@ public class ControladorJogadorUm : MonoBehaviour
     {
         x = Input.GetAxis("HORIZONTAL0");
         y = Input.GetAxis("VERTICAL0");
-        if (atack == false)
-        {
-            sMovimentacao.EstaParado(x, y);
-            sMovimentacao.AndarPraBaixo(x, y);
-            sMovimentacao.AndarPraCima(x, y);
-            sMovimentacao.AndarPraEsquerda(x, y);
-            sMovimentacao.AndarPraDireita(x, y);
-        }
+        //if (atack == false)
+        //{
+            sptMovimentacaoPersonagemUm.EstaParado(x, y);
+            sptMovimentacaoPersonagemUm.AndarPraBaixo(x, y);
+            sptMovimentacaoPersonagemUm.AndarPraCima(x, y);
+            sptMovimentacaoPersonagemUm.AndarPraEsquerda(x, y);
+            sptMovimentacaoPersonagemUm.AndarPraDireita(x, y);
+       // }
 			
-        if (Input.GetButtonDown("AZUL0") && atack == false)
-        {
-            atack = true;
-            controladorJogador.velocity = new Vector2(0, 0);
-            animacaoJogador.SetTrigger("habilidade-Um");
-        }
+        //if (Input.GetButtonDown("AZUL0") && atack == false)
+        //{
+        //    atack = true;
+        //    personagemJogadorUm.GetRGBDControladorJogador().velocity = new Vector2(0, 0);
+        //    personagemJogadorUm.GetAnimatorPersonagem().SetTrigger("habilidade-Um");
+        //}
 
     }
 
-    public void OnHitBox()
-    {
-        GameObject hit = Instantiate(hitBoxPrefab, hitBox.position, hitBox.localRotation);
-        Destroy(hit.gameObject, 0.05f);
-    }
+    //public void OnHitBox()
+    //{
+    //    GameObject hit = Instantiate(hitBoxPrefab, hitBox.position, hitBox.localRotation);
+    //    Destroy(hit.gameObject, 0.05f);
+    //}
 
-    public void NoFimDoAtaque()
-    {
-        atack = false;
-    }
+    //public void NoFimDoAtaque()
+    //{
+    //    atack = false;
+    //}
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        switch (col.gameObject.tag)
-        {
-        case "inimigo":
-            if (!animacaoJogador.GetBool("toma-Hit"))
-            {
-                atack = false;
-                animacaoJogador.SetTrigger("toma-Hit");
-            }
-        break;
+    //void OnTriggerEnter2D(Collider2D col)
+    //{
+    //    switch (col.gameObject.tag)
+    //    {
+    //    case "inimigo":
+    //        if (! personagemJogadorUm.GetAnimatorPersonagem().GetBool("toma-Hit"))
+    //        {
+    //            atack = false;
+    //                personagemJogadorUm.GetAnimatorPersonagem().SetTrigger("toma-Hit");
+    //        }
+    //    break;
 
-        case "vida":
+    //    case "vida":
 
-        break;
-        }
-    }
+    //    break;
+    //    }
+    //}
 }
