@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Personagem : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Personagem : MonoBehaviour
     public GameObject prefabHitBoxUm; //Habilidade
     public Transform trHitBoxEsquerda;
     public GameObject prefabHitBoxUmEsquerda;
+    private Image BarraHP;
     private bool blAttack = false;
     private float flDanoHabilidadeUm;
 
@@ -110,11 +112,11 @@ public class Personagem : MonoBehaviour
         this.strNome = nome;
         this.intEnergia = 0;
         this.intVida = 3;
-        this.flBarraHP = 100.0f;
+        this.flBarraHP = 1.0f;
         prefabPersonagem = gameObject;
         anAnimacaoJogador = this.gameObject.GetComponent<Animator>();
         rgbdControladorJogador = this.gameObject.GetComponent<Rigidbody2D>();
-        flDanoHabilidadeUm = 27.25f;
+        flDanoHabilidadeUm = 0.1725f;
     }
     public void RecarregaEnergia()
     {
@@ -160,5 +162,11 @@ public class Personagem : MonoBehaviour
     private void TomaDanoZumbi(float damage)
     {
         this.flBarraHP -= damage;
+    }
+
+    public void GetBarraHP()
+    {
+        BarraHP = GameObject.FindGameObjectWithTag("BarraHP").GetComponent<Image>();
+        BarraHP.fillAmount = flBarraHP;
     }
 }

@@ -191,8 +191,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 513585911}
-        m_MethodName: onClickJogar
+      - m_Target: {fileID: 1552349280}
+        m_MethodName: TelaMenuOptionJogar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -250,7 +250,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 513585912}
-  - component: {fileID: 513585911}
   - component: {fileID: 513585913}
   m_Layer: 0
   m_Name: GerenciadorAudioMenu
@@ -259,19 +258,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &513585911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513585910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b0cd6168a75c240a5924e7ed89302b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicaMenu: {fileID: 513585913}
 --- !u!4 &513585912
 Transform:
   m_ObjectHideFlags: 0
@@ -724,6 +710,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104821838}
   m_CullTransparentMesh: 0
+--- !u!1 &1552349279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1552349281}
+  - component: {fileID: 1552349280}
+  m_Layer: 0
+  m_Name: Gerenciador
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1552349280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552349279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e7eec7a5668534cbd0fb76511fae94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1552349281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552349279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.49335, y: 1.608454, z: -0.08890194}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1582942508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,8 +1117,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 513585911}
-        m_MethodName: onClickControles
+      - m_Target: {fileID: 1552349280}
+        m_MethodName: TelaMenuOptionControles
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

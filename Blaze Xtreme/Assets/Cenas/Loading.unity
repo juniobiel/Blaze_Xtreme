@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 785242556}
   m_Layer: 0
   m_Name: Gerenciador
-  m_TagString: Untagged
+  m_TagString: TelaLoading
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 785242555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efa44d5f117642e4cbcbf5cb2a208e47, type: 3}
+  m_Script: {fileID: 11500000, guid: 76e7eec7a5668534cbd0fb76511fae94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &785242557

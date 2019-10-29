@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ZumbiNPC : MonoBehaviour
 {
-    private float flDano = 6.25f;
-    private float flVida = 100f;
+    private float flDano = 0.02f;
+    private float flVida = 1.0f;
     public Animator anZumbi;
     public Vector2 goJogadorUm;
     private Vector2 goBaseUm;
     private float flSpeed = 0.775f;
+    private Image BarraHP;
 
 
     void Start()
@@ -17,7 +19,8 @@ public class ZumbiNPC : MonoBehaviour
         goBaseUm = GameObject.FindGameObjectWithTag("DefenseUm").gameObject.transform.position;
     }
 
-    private void Update()
+
+    private void FixedUpdate()
     {
         goJogadorUm = GameObject.FindGameObjectWithTag("Taeda").gameObject.transform.position;
 
@@ -49,6 +52,8 @@ public class ZumbiNPC : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position,
                 new Vector2(goBaseUm.x, goBaseUm.y), flSpeed * Time.deltaTime);
         }
+
+        GetZumbiHP();
     }
 
     bool IrParaBase()
@@ -105,5 +110,14 @@ public class ZumbiNPC : MonoBehaviour
     public void SetFlVida(float vida)
     {
         this.flVida -= vida;
+    }
+
+    public void GetZumbiHP()
+    {
+        Image[] ElementosBarraHP = gameObject.GetComponentInChildren<Canvas>().GetComponentsInChildren<Image>();
+
+        BarraHP = ElementosBarraHP[1];
+
+        BarraHP.fillAmount = flVida;
     }
 }

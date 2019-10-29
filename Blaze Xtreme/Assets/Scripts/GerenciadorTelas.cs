@@ -5,11 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class GerenciadorTelas : MonoBehaviour
 {
-   
-    public void TelaStart()
+    float contTimer = 0;
+    void Update()
     {
-        float contTimer = 0f;
         contTimer += Time.deltaTime;
+        if(GameObject.FindGameObjectWithTag("TelaStart"))
+            TelaStart(contTimer);
+        if (GameObject.FindGameObjectWithTag("TelaLoading"))
+            TelaLoading(contTimer);
+
+    }
+
+    public void TelaStart(float contTimer)
+    {
+        
         if (contTimer >= 4.0f)
         {
             if (Input.anyKey)
@@ -35,10 +44,8 @@ public class GerenciadorTelas : MonoBehaviour
         SceneManager.LoadScene("Controles", LoadSceneMode.Single);
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("GerenciadorAudioMenu"));
     }
-    public void TelaLoading()
+    public void TelaLoading(float contTimer)
     {
-        float contTimer = 0f;
-        contTimer += Time.deltaTime;
         if (contTimer >= 7.0f)
         {
             SceneManager.LoadScene("Menu", LoadSceneMode.Single);

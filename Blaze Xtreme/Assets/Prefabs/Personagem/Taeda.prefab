@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1014783326480424573}
   m_Layer: 5
   m_Name: barraVerde
-  m_TagString: Untagged
+  m_TagString: BarraHP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 5, y: 0.35}
+  m_SizeDelta: {x: 2.5, y: 0.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3448609974809280954
 CanvasRenderer:
@@ -359,7 +359,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 5, y: 0.35}
+  m_SizeDelta: {x: 2.5, y: 0.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5680129112802071036
 CanvasRenderer:
@@ -436,7 +436,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 3}
-  m_SizeDelta: {x: 5, y: 0.35}
+  m_SizeDelta: {x: 2.5, y: 0.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7847438218774468422
 Canvas:
@@ -457,7 +457,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &7648549837165096291
 MonoBehaviour:

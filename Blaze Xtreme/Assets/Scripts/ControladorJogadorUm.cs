@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static Personagem;
 
 public class ControladorJogadorUm : MonoBehaviour
@@ -8,6 +9,7 @@ public class ControladorJogadorUm : MonoBehaviour
     private Personagem personagemJogadorUm;
     private Movimentacao sptMovimentacaoPersonagemUm;
     public GameObject prefabPersonagemUm;
+    private Image barraHP;
     float contTimerEnergia;
     public float x;
     public float y;
@@ -56,7 +58,7 @@ public class ControladorJogadorUm : MonoBehaviour
             personagemJogadorUm.GetAnimatorPersonagem().SetTrigger("habilidade-Um");
         }
 
-        
+        personagemJogadorUm.GetBarraHP();
     }
 
     
