@@ -82,6 +82,8 @@ public class ZumbiNPC : MonoBehaviour
                 if(flVida <= 0f)
                 {
                     Destroy(this.gameObject);
+                    HUDScript pontos = GameObject.Find("HUD").GetComponent<HUDScript>();
+                    pontos.SetPontos(3);
                 }
             break;
         }

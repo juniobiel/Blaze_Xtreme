@@ -8,15 +8,19 @@ public class Personagem : MonoBehaviour
     private string strNome;
     private int intVida;
     private int intEnergia;
-    private float flBarraHP;
+    
     public GameObject prefabPersonagem;
     public Animator anAnimacaoJogador;
     public Rigidbody2D rgbdControladorJogador;
-    public Transform trHitBoxUm; //Habilidade
-    public GameObject prefabHitBoxUm; //Habilidade
+
+    public Transform trHitBoxUm;
+    public GameObject prefabHitBoxUm;
     public Transform trHitBoxEsquerda;
     public GameObject prefabHitBoxUmEsquerda;
+
     private Image BarraHP;
+    private float flBarraHP;
+
     private bool blAttack = false;
     private float flDanoHabilidadeUm;
 
@@ -162,6 +166,18 @@ public class Personagem : MonoBehaviour
     private void TomaDanoZumbi(float damage)
     {
         this.flBarraHP -= damage;
+        if (flBarraHP <= 0f)
+        {
+            if (intVida != 0) {
+                intVida--;
+                anAnimacaoJogador.SetTrigger("perder-Vida");
+                flBarraHP = 1.0f;
+                HUDScript BarraVida = GameObject.Find("HUD").GetComponent<HUDScript>();
+                BarraVida.ReduzirVida(intVida);
+                }
+        }
+        if (intVida == 0)
+            Debug.Log("Game Over");
     }
 
     public void GetBarraHP()
