@@ -244,6 +244,7 @@ CircleCollider2D:
   m_Offset: {x: 0.04077243, y: 0.29}
   serializedVersion: 2
   m_Radius: 0.13215725
+<<<<<<< HEAD
 --- !u!1 &4926649339857182483
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,3 +419,5 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+=======
+>>>>>>> d997a4d12afa683485d4aab3a804877c41b14fec
