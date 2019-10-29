@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Cenas/Controles.unity
     guid: f168faf2b0ac5914db1cd0e513da909f
-  - enabled: 1
-    path: Assets/Cenas/BoxBase.unity
-    guid: 49962ecb0462a9441a9c33f9e69ae0b5
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
