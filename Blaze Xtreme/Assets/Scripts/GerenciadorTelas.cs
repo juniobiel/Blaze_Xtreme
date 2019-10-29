@@ -1,18 +1,52 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GerenciadorTelas : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+   
+    public void TelaStart()
     {
-        
+        float contTimer = 0f;
+        contTimer += Time.deltaTime;
+        if (contTimer >= 4.0f)
+        {
+            if (Input.anyKey)
+            {
+                SceneManager.LoadScene("Loading", LoadSceneMode.Single);
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TelaSelecaoPersonagemOptionPersonagem()
     {
-        
+        SceneManager.LoadScene("Base1", LoadSceneMode.Single);
+    }
+
+    public void TelaMenuOptionJogar()
+    {
+        SceneManager.LoadScene("SelecionarPersonagem", LoadSceneMode.Single);
+        DontDestroyOnLoad(GameObject.FindGameObjectWithTag("GerenciadorAudioMenu"));
+    }
+
+    public void TelaMenuOptionControles()
+    {
+        SceneManager.LoadScene("Controles", LoadSceneMode.Single);
+        DontDestroyOnLoad(GameObject.FindGameObjectWithTag("GerenciadorAudioMenu"));
+    }
+    public void TelaLoading()
+    {
+        float contTimer = 0f;
+        contTimer += Time.deltaTime;
+        if (contTimer >= 7.0f)
+        {
+            SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        }
+    }
+    public void BtnVoltarMenu()
+    {
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        Destroy(GameObject.FindGameObjectWithTag("GerenciadorAudioMenu"));
     }
 }
