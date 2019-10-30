@@ -157,7 +157,6 @@ public class Personagem : MonoBehaviour
             case "inimigo":
                 blAttack = false;
                 float danoZumbi = GameObject.FindGameObjectWithTag("inimigo").GetComponent<ZumbiNPC>().GetFlDano();
-                this.anAnimacaoJogador.SetTrigger("toma-Hit");                
                 TomaDanoZumbi(danoZumbi);
                 break;
         }
@@ -166,18 +165,23 @@ public class Personagem : MonoBehaviour
     private void TomaDanoZumbi(float damage)
     {
         this.flBarraHP -= damage;
+        if(flBarraHP >= 0.01f)
+            this.anAnimacaoJogador.SetTrigger("toma-Hit");
         if (flBarraHP <= 0f)
         {
             if (intVida != 0) {
                 intVida--;
-                anAnimacaoJogador.SetTrigger("perder-Vida");
-                flBarraHP = 1.0f;
+                anAnimacaoJogador.SetTrigger("perde-Vida");//animacao perde vida esta mto rapido
                 HUDScript BarraVida = GameObject.Find("HUD").GetComponent<HUDScript>();
                 BarraVida.ReduzirVida(intVida);
-                }
+                flBarraHP = 1.0f;
+            }
+            else
+            {
+                //game over
+            }
         }
-        if (intVida == 0)
-            Debug.Log("Game Over");
+       
     }
 
     public void GetBarraHP()

@@ -35,7 +35,7 @@ public class GerenciadorTelas : MonoBehaviour
 
     public void TelaMenuOptionJogar()
     {
-        SceneManager.LoadScene("SelecionarPersonagem", LoadSceneMode.Single);
+        SceneManager.LoadScene("Base1", LoadSceneMode.Single);
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("GerenciadorAudioMenu"));
     }
 

@@ -10,7 +10,7 @@ public class ZumbiNPC : MonoBehaviour
     public Animator anZumbi;
     public Vector2 goJogadorUm;
     private Vector2 goBaseUm;
-    private float flSpeed = 0.775f;
+    private float flSpeed = 0.45f;
     private Image BarraHP;
 
 

@@ -15,6 +15,7 @@ public class HUDScript : MonoBehaviour
     {
         vidasJogadorUm = GameObject.Find("VidasJogadorUm").GetComponentsInChildren<Image>();
         Destroy(vidasJogadorUm[vida].gameObject);
+        //gameOver
     }
 
     public void SetPontos(int points)
