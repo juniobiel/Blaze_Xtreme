@@ -10,7 +10,7 @@ public class ZumbiNPC : MonoBehaviour
     public Animator anZumbi;
     public Vector2 goJogadorUm;
     private Vector2 goBaseUm;
-    private float flSpeed = 0.45f;
+    private float flSpeed = 0.25f;
     private Image BarraHP;
 
 
@@ -89,9 +89,24 @@ public class ZumbiNPC : MonoBehaviour
         }
     }
 
+    public void SetFlSpeed(float velocidade)
+    {
+        this.flSpeed = velocidade;
+    }
+
+    public void SetFlDano(float dano)
+    {
+        this.flDano = dano;
+    }
+
     public void ZumbiTomaDano(float damage)
     {
         this.flVida -= damage;
+    }
+
+    public float GetFlSpeed()
+    {
+        return this.flSpeed;
     }
 
     public Animator GetAnZumbi()

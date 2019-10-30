@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class HUDScript : MonoBehaviour
 {
-    Text pontos;
-    int pontosTotais = 0;
+    Text pontosJogadorUm;
+    int pontosTotaisJogadorUm = 0;
 
     Image[] vidasJogadorUm;
 
@@ -20,8 +20,13 @@ public class HUDScript : MonoBehaviour
 
     public void SetPontos(int points)
     {
-        pontos = gameObject.GetComponentInChildren<Text>();
-        pontosTotais += points;
-        pontos.text = pontosTotais.ToString();
+        pontosJogadorUm = gameObject.GetComponentInChildren<Text>();
+        pontosTotaisJogadorUm += points;
+        pontosJogadorUm.text = pontosTotaisJogadorUm.ToString();
+    }
+
+    public int GetPontosJogadorUm()
+    {
+        return this.pontosTotaisJogadorUm;
     }
 }
