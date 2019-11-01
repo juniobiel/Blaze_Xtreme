@@ -9,7 +9,6 @@ public class ControladorJogadorUm : MonoBehaviour
     private Personagem personagemJogadorUm;
     private Movimentacao sptMovimentacaoPersonagemUm;
     public GameObject prefabPersonagemUm;
-    private Image barraHP;
     float contTimerEnergia;
     public float x;
     public float y;

@@ -7,46 +7,40 @@ public class GerenciadorFase : MonoBehaviour
     //ZumbiNPC scriptZumbi;  //perguntar sobre esta associação para a professora na aula de PROG
     HUDScript scriptHUD;
     ControladorNPC controladorNPC;
+    int contFase;
+    int pontuacaoJogadorUm;
+    int pontuacaoJogadorDois;
+    int pontuacaoTotal;
+    bool aumentou;
     void Start()
     {
-        //scriptZumbi = gameObject.AddComponent<ZumbiNPC>(); //arrumar essa de niveis e setar todos os 
-        //damages pelo gerenciador
         scriptHUD = GameObject.Find("HUD").GetComponent<HUDScript>();
         controladorNPC = GameObject.Find("ControladorNPCs").GetComponent<ControladorNPC>();
-
-        //Debug.Log(scriptZumbi.GetFlDano());
-        //Debug.Log(scriptZumbi.GetFlSpeed());
-
-        //scriptZumbi.SetFlDano(2f);
-        //scriptZumbi.SetFlSpeed(2f);
-
-       
-        //Debug.Log(scriptZumbi.GetFlSpeed());
+        contFase = 0;
+        aumentou = false;
 
     }
     void FixedUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-            controladorNPC.atualizarTodosNPCs(2f, 2f);
+        if (Input.GetKeyDown(KeyCode.Space))
+            controladorNPC.AtualizarTodosNPCs(2f, 2f);
+        //se aumentou é verdade e pontuacao igual ao nivel para aumentar, entao nao pode aumentar de novo
+        //se o nv aumenta com tanto pontos, receber uma variável que se torna um multiplicador de pontos que deve
+        //atingir para aumentar o nv.
+        //if(int pontos == 15){
+        //    AumentarDificuldade(contFase);
+        //}
     }
 
-    //void AumentarDificuldade()
-    //{
-    //    float velocidade = scriptZumbi.GetFlSpeed();
-    //    float dano = scriptZumbi.GetFlDano();
+    void AumentarDificuldade()
+    {
+        controladorNPC.AtualizarTodosNPCs(0.01f, 0.05f);
+        contFase++;
+        aumentou = true;
+    }
 
-    //    dano += 0.005f;
-    //    velocidade += 0.05f;
+    void VerificaPontuacao(int pontuacaoTotais)
+    {
 
-    //    scriptZumbi.SetFlSpeed(velocidade);
-    //    scriptZumbi.SetFlDano(dano);
-    //    Debug.Log("Dificuldade aumentada!");
-    //    Debug.Log(dano);
-    //    Debug.Log(velocidade);
-    //}
-
-    //int VerificaPontos()
-    //{
-    //    return scriptHUD.GetPontosJogadorUm();
-    //}
+    }
 }

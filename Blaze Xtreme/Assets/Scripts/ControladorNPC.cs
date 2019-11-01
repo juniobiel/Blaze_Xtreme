@@ -20,11 +20,13 @@ public class ControladorNPC : MonoBehaviour
          }
     }
 
-    public void atualizarTodosNPCs(float dano, float velocidade)
+    public void AtualizarTodosNPCs(float dano, float velocidade)
     {
         foreach (GameObject aux in listaDeZumbis)
         {
             ZumbiNPC refNPC = aux.GetComponent<ZumbiNPC>();
+            dano += refNPC.GetFlDano();
+            velocidade += refNPC.GetFlSpeed();
 
             refNPC.SetFlDano(dano);
             refNPC.SetFlSpeed(velocidade);

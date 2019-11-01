@@ -5,10 +5,14 @@ using UnityEngine.UI;
 
 public class HUDScript : MonoBehaviour
 {
-    Text pontosJogadorUm;
-    int pontosTotaisJogadorUm = 0;
+    Text txtPontosJogadorUm;
+    int pontosJogadorUm = 0;
+
+    Text txtPontosJogadorDois;
+    int pontosJogadorDois = 0;
 
     Image[] vidasJogadorUm;
+
 
 
     public void ReduzirVida(int vida)
@@ -18,15 +22,26 @@ public class HUDScript : MonoBehaviour
         //gameOver
     }
 
-    public void SetPontos(int points)
+    public void SetPontosJogadorUm(int points)
     {
-        pontosJogadorUm = gameObject.GetComponentInChildren<Text>();
-        pontosTotaisJogadorUm += points;
-        pontosJogadorUm.text = pontosTotaisJogadorUm.ToString();
+        txtPontosJogadorUm = gameObject.GetComponentInChildren<Text>();
+        pontosJogadorUm += points;
+        txtPontosJogadorUm.text = pontosJogadorUm.ToString();
     }
 
     public int GetPontosJogadorUm()
     {
-        return this.pontosTotaisJogadorUm;
+        return this.pontosJogadorUm;
+    }
+    public void SetPontosJogadorDois(int points)
+    {
+        txtPontosJogadorDois = gameObject.GetComponentInChildren<Text>();
+        pontosJogadorDois += points;
+        txtPontosJogadorUm.text = pontosJogadorDois.ToString();
+    }
+
+    public int GetPontosJogadorDois()
+    {
+        return this.pontosJogadorDois;
     }
 }

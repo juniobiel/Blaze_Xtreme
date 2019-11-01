@@ -85,7 +85,7 @@ public class ZumbiNPC : MonoBehaviour
                 {
                     Destroy(this.gameObject);
                     HUDScript pontos = GameObject.Find("HUD").GetComponent<HUDScript>();
-                    pontos.SetPontos(3);
+                    pontos.SetPontosJogadorUm(3);
                 }
             break;
         }
