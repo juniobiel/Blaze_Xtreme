@@ -15,10 +15,16 @@ public class ZumbiNPC : MonoBehaviour
     
     private Image BarraHP;
 
+    HUDScript sptPontos;
+
 
     void Start()
     {
         goBaseUm = GameObject.FindGameObjectWithTag("DefenseUm").gameObject.transform.position;
+
+        sptPontos = GameObject.Find("HUD").GetComponent<HUDScript>();
+
+        SetZumbiHP(1f);
     }
 
 
@@ -55,7 +61,8 @@ public class ZumbiNPC : MonoBehaviour
                 new Vector2(goBaseUm.x, goBaseUm.y), flSpeed * Time.deltaTime);
         }
 
-        GetZumbiHP();
+        
+        
     }
 
     bool IrParaBase()
@@ -81,12 +88,6 @@ public class ZumbiNPC : MonoBehaviour
                 anZumbi.SetTrigger("toma-Hit");
                 float danoHabilidadeUmTaeda = GameObject.FindGameObjectWithTag("Taeda").GetComponent<Personagem>().GetFlDanoHabilidadeUm();
                 ZumbiTomaDano(danoHabilidadeUmTaeda);
-                if(flVida <= 0f)
-                {
-                    Destroy(this.gameObject);
-                    HUDScript pontos = GameObject.Find("HUD").GetComponent<HUDScript>();
-                    pontos.SetPontosJogadorUm(3);
-                }
             break;
         }
     }
@@ -103,7 +104,21 @@ public class ZumbiNPC : MonoBehaviour
 
     public void ZumbiTomaDano(float damage)
     {
-        this.flVida -= damage;
+        if (damage >= flVida)
+        {
+            this.flVida = 0;
+            BarraHP.fillAmount = 0;
+            Destroy(gameObject);
+            sptPontos.SetPontosJogadorUm(3);
+        }
+        else if (damage < flVida)
+        {
+            this.flVida -= damage;
+            BarraHP.fillAmount = flVida;
+        }
+        else
+            Debug.Log("Condição excessiva do método ZumbiTomaDano em ZumbiNPC");
+           
     }
 
     public float GetFlSpeed()
@@ -131,12 +146,12 @@ public class ZumbiNPC : MonoBehaviour
         this.flVida -= vida;
     }
 
-    public void GetZumbiHP()
+    public void SetZumbiHP(float zumbiHP)
     {
         Image[] ElementosBarraHP = gameObject.GetComponentInChildren<Canvas>().GetComponentsInChildren<Image>();
 
         BarraHP = ElementosBarraHP[1];
 
-        BarraHP.fillAmount = flVida;
+        BarraHP.fillAmount = zumbiHP;
     }
 }

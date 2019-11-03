@@ -24,13 +24,29 @@ public class ControladorNPC : MonoBehaviour
     {
         foreach (GameObject aux in listaDeZumbis)
         {
+            int indexador = 0;
+
+            if (aux == null)
+                listaDeZumbis.RemoveAt(indexador);
+
             ZumbiNPC refNPC = aux.GetComponent<ZumbiNPC>();
+            
             dano += refNPC.GetFlDano();
             velocidade += refNPC.GetFlSpeed();
 
             refNPC.SetFlDano(dano);
             refNPC.SetFlSpeed(velocidade);
+
+            indexador++;
         }
+        
+        ZumbiNPC scriptAtt = prefabZumbi.GetComponent<ZumbiNPC>();
+
+        dano += scriptAtt.GetFlDano();
+        velocidade += scriptAtt.GetFlSpeed();
+
+        scriptAtt.SetFlDano(dano);
+        scriptAtt.SetFlSpeed(velocidade);
 
     }
 

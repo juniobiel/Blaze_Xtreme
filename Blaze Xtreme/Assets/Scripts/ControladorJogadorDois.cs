@@ -12,16 +12,18 @@ public class ControladorJogadorDois : MonoBehaviour
     float contTimerEnergia;
     public float x;
     public float y;
+
     
     
     void Start()
     {
-        prefabPersonagemDois = Instantiate(prefabPersonagemDois, new Vector2(0, 0), Quaternion.identity);
+        prefabPersonagemDois = Instantiate(prefabPersonagemDois, new Vector2(2, 0), Quaternion.identity);
         personagemJogadorDois = prefabPersonagemDois.GetComponent<Personagem>();
-        personagemJogadorDois.InstanciarPersonagem("Hosigake");
+        personagemJogadorDois.InstanciarPersonagem("Hoshigake");
         sptMovimentacaoPersonagemDois = new Movimentacao(personagemJogadorDois);
         sptMovimentacaoPersonagemDois.SetFlModuloVelocidade(2.0f);
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>().AdicionarPlayers(personagemJogadorDois.transform);
+        
 
         //Define o jogador Parado
         sptMovimentacaoPersonagemDois.EstaParado(x, y);
@@ -50,7 +52,7 @@ public class ControladorJogadorDois : MonoBehaviour
             sptMovimentacaoPersonagemDois.AndarPraDireita(x, y);
         }
 
-        if (Input.GetButtonDown("AZUL0") && !personagemJogadorDois.GetBlAttack())
+        if (Input.GetButtonDown("AZUL1") && !personagemJogadorDois.GetBlAttack())
         {
             personagemJogadorDois.SetBlAttack(true);
             personagemJogadorDois.GetRGBDControladorJogador().velocity = new Vector2(0, 0);

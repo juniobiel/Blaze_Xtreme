@@ -118,8 +118,8 @@ public class Personagem : MonoBehaviour
         this.intVida = 3;
         this.flBarraHP = 1.0f;
         prefabPersonagem = gameObject;
-        anAnimacaoJogador = this.gameObject.GetComponent<Animator>();
-        rgbdControladorJogador = this.gameObject.GetComponent<Rigidbody2D>();
+        anAnimacaoJogador = gameObject.GetComponent<Animator>();
+        rgbdControladorJogador = gameObject.GetComponent<Rigidbody2D>();
         flDanoHabilidadeUm = 0.3725f;
     }
     public void RecarregaEnergia()

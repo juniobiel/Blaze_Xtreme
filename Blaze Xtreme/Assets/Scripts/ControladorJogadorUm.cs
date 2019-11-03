@@ -12,16 +12,24 @@ public class ControladorJogadorUm : MonoBehaviour
     float contTimerEnergia;
     public float x;
     public float y;
-    
+    HUDScript sptPontos;
     
     void Start()
     {
         prefabPersonagemUm = Instantiate(prefabPersonagemUm, new Vector2(0, 0), Quaternion.identity);
+
         personagemJogadorUm = prefabPersonagemUm.GetComponent<Personagem>();
         personagemJogadorUm.InstanciarPersonagem("Taeda");
-        sptMovimentacaoPersonagemUm = new Movimentacao(personagemJogadorUm);
+
+        sptMovimentacaoPersonagemUm = gameObject.AddComponent<Movimentacao>();
+        sptMovimentacaoPersonagemUm.SetsptPersonagem(personagemJogadorUm);
         sptMovimentacaoPersonagemUm.SetFlModuloVelocidade(2.0f);
+
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>().AdicionarPlayers(personagemJogadorUm.transform);
+
+        sptPontos = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUDScript>();
+        sptPontos.SetPontosJogadorUm(0);
+        sptPontos.SetPontosJogadorDois(0);
 
         //Define o jogador Parado
         sptMovimentacaoPersonagemUm.EstaParado(x, y);

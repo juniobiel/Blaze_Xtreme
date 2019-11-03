@@ -14,6 +14,11 @@ public class Movimentacao : Personagem
         this.sptPersonagem = sptPersonagem;
     }
 
+    public void SetsptPersonagem(Personagem sptPersonagem)
+    {
+        this.sptPersonagem = sptPersonagem;
+    }
+
     public float GetFlModuloVelocidade()
     {
         return this.flModuloVelocidade;

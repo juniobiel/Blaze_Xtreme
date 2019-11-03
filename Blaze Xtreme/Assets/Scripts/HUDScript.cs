@@ -6,13 +6,18 @@ using UnityEngine.UI;
 public class HUDScript : MonoBehaviour
 {
     Text txtPontosJogadorUm;
-    int pontosJogadorUm = 0;
+    int pontosJogadorUm;
 
     Text txtPontosJogadorDois;
-    int pontosJogadorDois = 0;
+    int pontosJogadorDois;
 
     Image[] vidasJogadorUm;
 
+    private void Start()
+    {
+        txtPontosJogadorUm = GameObject.Find("PontosJogadorUm").GetComponentInChildren<Text>();
+        txtPontosJogadorDois = GameObject.Find("PontosJogadorDois").GetComponentInChildren<Text>();
+    }
 
 
     public void ReduzirVida(int vida)
@@ -24,8 +29,9 @@ public class HUDScript : MonoBehaviour
 
     public void SetPontosJogadorUm(int points)
     {
-        txtPontosJogadorUm = gameObject.GetComponentInChildren<Text>();
-        pontosJogadorUm += points;
+        Debug.Log("Esta recebendo " + points);
+        txtPontosJogadorUm = GameObject.Find("PontosJogadorUm").GetComponentInChildren<Text>();
+        this.pontosJogadorUm += points;
         txtPontosJogadorUm.text = pontosJogadorUm.ToString();
     }
 
@@ -35,9 +41,9 @@ public class HUDScript : MonoBehaviour
     }
     public void SetPontosJogadorDois(int points)
     {
-        txtPontosJogadorDois = gameObject.GetComponentInChildren<Text>();
-        pontosJogadorDois += points;
-        txtPontosJogadorUm.text = pontosJogadorDois.ToString();
+        txtPontosJogadorDois = GameObject.Find("PontosJogadorDois").GetComponentInChildren<Text>();
+        this.pontosJogadorDois += points;
+        txtPontosJogadorDois.text = pontosJogadorDois.ToString();
     }
 
     public int GetPontosJogadorDois()

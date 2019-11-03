@@ -14,6 +14,7 @@ TagManager:
   - TelaLoading
   - TelaMenu
   - BarraHP
+  - Hoshigake
   layers:
   - Default
   - TransparentFX
