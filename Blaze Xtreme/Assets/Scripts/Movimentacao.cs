@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movimentacao : Personagem
+public class Movimentacao : MonoBehaviour
 {
-    Personagem sptPersonagem;
+    Taeda sptPersonagemUm;
+    Hoshigake sptPersonagemDois;
     private float flModuloVelocidade;
     
     public Movimentacao() { }
 
-    public Movimentacao(Personagem sptPersonagem)
+    public void SetsptPersonagem(Taeda sptPersonagem)
     {
-        this.sptPersonagem = sptPersonagem;
+        this.sptPersonagemUm = sptPersonagem;
     }
 
-    public void SetsptPersonagem(Personagem sptPersonagem)
+    public void SetsptPersonagem(Hoshigake sptPersonagem)
     {
-        this.sptPersonagem = sptPersonagem;
+        this.sptPersonagemDois = sptPersonagem;
     }
 
     public float GetFlModuloVelocidade()

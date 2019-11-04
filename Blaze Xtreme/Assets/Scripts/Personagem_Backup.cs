@@ -5,24 +5,7 @@ using UnityEngine.UI;
 
 public class Personagem : MonoBehaviour
 {
-    private string strNome;
-    private int intVida;
-    private int intEnergia;
     
-    public GameObject prefabPersonagem;
-    public Animator anAnimacaoJogador;
-    public Rigidbody2D rgbdControladorJogador;
-
-    public Transform trHitBoxUm;
-    public GameObject prefabHitBoxUm;
-    public Transform trHitBoxEsquerda;
-    public GameObject prefabHitBoxUmEsquerda;
-
-    private Image BarraHP;
-    private float flBarraHP;
-
-    private bool blAttack = false;
-    private float flDanoHabilidadeUm;
 
     public float GetFlDanoHabilidadeUm()
     {
@@ -139,10 +122,7 @@ public class Personagem : MonoBehaviour
         {
             GameObject hitDireita = Instantiate(prefabHitBoxUm, trHitBoxUm.position, trHitBoxUm.localRotation);
             Destroy(hitDireita.gameObject, 0.5f);
-        }
-
-
-        
+        } 
     }
 
     public void FimDoAtaque()

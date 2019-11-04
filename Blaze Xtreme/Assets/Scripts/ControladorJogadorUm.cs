@@ -6,7 +6,7 @@ using static Personagem;
 
 public class ControladorJogadorUm : MonoBehaviour
 {
-    private Personagem personagemJogadorUm;
+    private Taeda personagemJogadorUm;
     private Movimentacao sptMovimentacaoPersonagemUm;
     public GameObject prefabPersonagemUm;
     float contTimerEnergia;
@@ -18,11 +18,11 @@ public class ControladorJogadorUm : MonoBehaviour
     {
         prefabPersonagemUm = Instantiate(prefabPersonagemUm, new Vector2(0, 0), Quaternion.identity);
 
-        personagemJogadorUm = prefabPersonagemUm.GetComponent<Personagem>();
+        personagemJogadorUm = prefabPersonagemUm.GetComponent<Taeda>();
         personagemJogadorUm.InstanciarPersonagem("Taeda");
 
         sptMovimentacaoPersonagemUm = gameObject.AddComponent<Movimentacao>();
-        sptMovimentacaoPersonagemUm.SetsptPersonagem(personagemJogadorUm);
+        sptMovimentacaoPersonagemUm.SetsptPersonagem(personagemJogadorUm); //validar
         sptMovimentacaoPersonagemUm.SetFlModuloVelocidade(2.0f);
 
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>().AdicionarPlayers(personagemJogadorUm.transform);
