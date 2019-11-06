@@ -104,17 +104,22 @@ public class ZumbiNPC : MonoBehaviour
 
     public void ZumbiTomaDano(float damage)
     {
-        if (damage >= flVida)
+        if (damage == flVida)
         {
-            this.flVida = 0;
-            BarraHP.fillAmount = 0;
-            Destroy(gameObject);
-            sptPontos.SetPontosJogadorUm(3);
+            this.flVida = 0f;
+            BarraHP.fillAmount = 0f;
         }
         else if (damage < flVida)
         {
             this.flVida -= damage;
             BarraHP.fillAmount = flVida;
+        }
+        else if(damage > flVida)
+        {
+            this.flVida = 0f;
+            BarraHP.fillAmount = 0f;
+            Destroy(gameObject);
+            sptPontos.SetPontosJogadorUm(3);
         }
         else
             Debug.Log("Condição excessiva do método ZumbiTomaDano em ZumbiNPC");

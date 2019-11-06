@@ -79,9 +79,9 @@ public class Taeda : Personagem
         this.strNome = Nome;
         this.intVida = 3;
         this.flBarraHP = 1f;
+        this.flDanoHabilidadeUm = 0.3725f;
         this.anAnimacaoTaeda = gameObject.GetComponent<Animator>();
         this.rgbdControladorJogador = gameObject.GetComponent<Rigidbody2D>();
-        this.flDanoHabilidadeUm = 0.3725f;
     }
 
     public void OnHitBox()
