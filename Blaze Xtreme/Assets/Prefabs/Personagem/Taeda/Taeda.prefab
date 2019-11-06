@@ -222,13 +222,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4967d0025c2fc224f924fbf514e31b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabPersonagem: {fileID: 0}
-  anAnimacaoJogador: {fileID: 0}
-  rgbdControladorJogador: {fileID: 0}
-  trHitBoxUm: {fileID: 0}
-  prefabHitBoxUm: {fileID: 0}
-  trHitBoxEsquerda: {fileID: 0}
-  prefabHitBoxUmEsquerda: {fileID: 0}
+  anAnimacaoTaeda: {fileID: 650541507523094519}
+  rgbdControladorJogador: {fileID: 650541507523094514}
+  trHitBoxUm: {fileID: 650541506356939404}
+  prefabHitBoxUm: {fileID: 7484108523516123417, guid: a92f90a106748ac41972d0bf90708f29,
+    type: 3}
+  trHitBoxEsquerda: {fileID: 1216079046940548752}
+  prefabHitBoxUmEsquerda: {fileID: 8907991644752199010, guid: b17bffde9ee6fda4a98bdf67c837c0c2,
+    type: 3}
 --- !u!50 &650541507523094514
 Rigidbody2D:
   serializedVersion: 4

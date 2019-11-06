@@ -6,7 +6,7 @@ using static Personagem;
 
 public class ControladorJogadorDois : MonoBehaviour
 {
-    private Personagem personagemJogadorDois;
+    private Hoshigake personagemJogadorDois;
     private Movimentacao sptMovimentacaoPersonagemDois;
     public GameObject prefabPersonagemDois;
     float contTimerEnergia;
@@ -18,9 +18,10 @@ public class ControladorJogadorDois : MonoBehaviour
     void Start()
     {
         prefabPersonagemDois = Instantiate(prefabPersonagemDois, new Vector2(2, 0), Quaternion.identity);
-        personagemJogadorDois = prefabPersonagemDois.GetComponent<Personagem>();
+        personagemJogadorDois = prefabPersonagemDois.GetComponent<Hoshigake>();
         personagemJogadorDois.InstanciarPersonagem("Hoshigake");
-        sptMovimentacaoPersonagemDois = new Movimentacao(personagemJogadorDois);
+        sptMovimentacaoPersonagemDois = gameObject.AddComponent<Movimentacao>();
+        sptMovimentacaoPersonagemDois.SetsptPersonagem(personagemJogadorDois);
         sptMovimentacaoPersonagemDois.SetFlModuloVelocidade(2.0f);
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>().AdicionarPlayers(personagemJogadorDois.transform);
         
@@ -33,13 +34,6 @@ public class ControladorJogadorDois : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        contTimerEnergia += Time.deltaTime;
-        
-        if(contTimerEnergia >= 6.0f)
-        {
-            personagemJogadorDois.RecarregaEnergia();
-            contTimerEnergia -= contTimerEnergia;
-        }
 
         x = Input.GetAxis("HORIZONTAL1");
         y = Input.GetAxis("VERTICAL1");

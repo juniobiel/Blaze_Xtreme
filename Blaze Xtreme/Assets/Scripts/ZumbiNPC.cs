@@ -86,7 +86,7 @@ public class ZumbiNPC : MonoBehaviour
         {
             case "hitBox1":
                 anZumbi.SetTrigger("toma-Hit");
-                float danoHabilidadeUmTaeda = GameObject.FindGameObjectWithTag("Taeda").GetComponent<Personagem>().GetFlDanoHabilidadeUm();
+                float danoHabilidadeUmTaeda = GameObject.FindGameObjectWithTag("Taeda").GetComponent<Taeda>().GetFlDanoHabilidadeUm();
                 ZumbiTomaDano(danoHabilidadeUmTaeda);
             break;
         }

@@ -41,12 +41,7 @@ public class ControladorJogadorUm : MonoBehaviour
     {
         contTimerEnergia += Time.deltaTime;
         
-        if(contTimerEnergia >= 6.0f)
-        {
-            personagemJogadorUm.RecarregaEnergia();
-            contTimerEnergia -= contTimerEnergia;
-        }
-
+        
         x = Input.GetAxis("HORIZONTAL0");
         y = Input.GetAxis("VERTICAL0");
         if (!personagemJogadorUm.GetBlAttack())

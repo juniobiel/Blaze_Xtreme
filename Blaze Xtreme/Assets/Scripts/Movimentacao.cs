@@ -6,6 +6,7 @@ public class Movimentacao : MonoBehaviour
 {
     Taeda sptPersonagemUm;
     Hoshigake sptPersonagemDois;
+    Personagem sptPersonagem;
     private float flModuloVelocidade;
     
     public Movimentacao() { }
@@ -13,11 +14,13 @@ public class Movimentacao : MonoBehaviour
     public void SetsptPersonagem(Taeda sptPersonagem)
     {
         this.sptPersonagemUm = sptPersonagem;
+        this.sptPersonagem = sptPersonagemUm;
     }
 
     public void SetsptPersonagem(Hoshigake sptPersonagem)
     {
         this.sptPersonagemDois = sptPersonagem;
+        this.sptPersonagem = sptPersonagemDois;
     }
 
     public float GetFlModuloVelocidade()

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Taeda : MonoBehaviour
+public class Taeda : Personagem
 {
-    private string nome;
+    private string strNome;
 
     public Animator anAnimacaoTaeda;
     public Rigidbody2D rgbdControladorJogador;
@@ -27,6 +27,18 @@ public class Taeda : MonoBehaviour
     {
         this.blAttack = attack;
     }
+    public void SetFlBarraHP(float barraHP)
+    {
+        this.flBarraHP = barraHP;
+    }
+    public void SetIntVida(int vida)
+    {
+        this.intVida = vida;
+    }
+    public void SetFlDanoHabilidadeUm(float damage)
+    {
+        this.flDanoHabilidadeUm = damage;
+    }
 
 
     // ----------------------- Getters ----------------------------------
@@ -35,9 +47,13 @@ public class Taeda : MonoBehaviour
     {
         return this.intVida;
     }
-    public string GetNome()
+    public string GetStrNome()
     {
-        return this.nome;
+        return this.strNome;
+    }
+    public bool GetBlAttack()
+    {
+        return this.blAttack;
     }
     public float GetFlBarraHP()
     {
@@ -47,11 +63,11 @@ public class Taeda : MonoBehaviour
     {
         return this.flDanoHabilidadeUm;
     }
-    public Animator GetAnimatorTaeda()
+    public override Animator GetAnimatorPersonagem()
     {
         return this.anAnimacaoTaeda;
     }
-    public Rigidbody2D GetRGBDCorpoRigidoTaeda()
+    public override Rigidbody2D GetRGBDControladorJogador()
     {
         return this.rgbdControladorJogador;
     }
@@ -60,7 +76,7 @@ public class Taeda : MonoBehaviour
     // ----------------------- Métodos Principais -----------------------
     public void InstanciarPersonagem(string Nome)
     {
-        this.nome = Nome;
+        this.strNome = Nome;
         this.intVida = 3;
         this.flBarraHP = 1f;
         this.anAnimacaoTaeda = gameObject.GetComponent<Animator>();
