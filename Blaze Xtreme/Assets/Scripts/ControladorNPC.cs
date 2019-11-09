@@ -7,6 +7,15 @@ public class ControladorNPC : MonoBehaviour
     List<GameObject> listaDeZumbis = new List<GameObject>();
     public GameObject prefabZumbi;
     float contTimer = 0;
+
+    float SpeedAtual;
+    float DanoAtual;
+
+    void Start()
+    {
+        SpeedAtual = prefabZumbi.GetComponent<ZumbiNPC>().GetFlSpeed();
+        DanoAtual = prefabZumbi.GetComponent<ZumbiNPC>().GetFlDano();
+    }
     void Update()
     {
          contTimer += Time.deltaTime;
@@ -16,30 +25,19 @@ public class ControladorNPC : MonoBehaviour
             float x = Random.Range(-10, 10);
             float y = Random.Range(-10, 10);
             listaDeZumbis.Add(Instantiate(prefabZumbi, new Vector2(x, y), Quaternion.identity));
+            CopiaAtributosZumbi(); //atualizar ao instanciar
             contTimer -= contTimer;
          }
     }
 
-    public void AtualizarTodosNPCs(float dano, float velocidade)
+    public void CopiaAtributosZumbi()
     {
-        foreach (GameObject aux in listaDeZumbis)
-        {
-            int indexador = 0;
+        int indexador = listaDeZumbis.Count - 1;
+        listaDeZumbis[indexador].GetComponent<ZumbiNPC>().SetFlSpeed(SpeedAtual);
+    }
 
-            if (aux == null)
-                listaDeZumbis.RemoveAt(indexador);
-
-            ZumbiNPC refNPC = aux.GetComponent<ZumbiNPC>();
-            
-            dano += refNPC.GetFlDano();
-            velocidade += refNPC.GetFlSpeed();
-
-            refNPC.SetFlDano(dano);
-            refNPC.SetFlSpeed(velocidade);
-
-            indexador++;
-        }
-        
+    public void AtualizarTodosNPCs(float dano, float velocidade) //verificar este metodo
+    {
         ZumbiNPC scriptAtt = prefabZumbi.GetComponent<ZumbiNPC>();
 
         dano += scriptAtt.GetFlDano();
@@ -48,6 +46,27 @@ public class ControladorNPC : MonoBehaviour
         scriptAtt.SetFlDano(dano);
         scriptAtt.SetFlSpeed(velocidade);
 
+        SpeedAtual = velocidade;
+        DanoAtual = dano;
+
+        foreach (GameObject aux in listaDeZumbis)
+        {
+            ZumbiNPC refNPC = aux.GetComponent<ZumbiNPC>();
+
+            refNPC.SetFlDano(dano);
+            refNPC.SetFlSpeed(velocidade);
+
+            Debug.Log("A velocidade do zumbi agora e: Dentro da lista " + velocidade);
+            Debug.Log("O dano do zumbi agora e: Dentro da lista " + dano);
+
+        }
+        Debug.Log("A velocidade do zumbi agora e: " + velocidade);
+        Debug.Log("O dano do zumbi agora e: " + dano);
+    }
+
+    public List<GameObject> GetListaZumbi()
+    {
+        return this.listaDeZumbis;
     }
 
 }

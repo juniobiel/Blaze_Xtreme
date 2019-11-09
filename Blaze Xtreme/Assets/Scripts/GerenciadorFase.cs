@@ -17,7 +17,7 @@ public class GerenciadorFase : MonoBehaviour
         scriptHUD = GameObject.Find("HUD").GetComponent<HUDScript>(); 
         controladorNPC = GameObject.Find("ControladorNPCs").GetComponent<ControladorNPC>();
 
-        nivel = 0;
+        nivel = 1;
         dificuldade = 0.2f;
         pontoBase = 15;
 
@@ -25,11 +25,11 @@ public class GerenciadorFase : MonoBehaviour
     void FixedUpdate()
     {
         
-        Debug.Log("Pontuacao total: " + VerificaPontuacao(scriptHUD.GetPontosJogadorUm(), scriptHUD.GetPontosJogadorDois()) );
+        
         if(VerificaPontuacao(scriptHUD.GetPontosJogadorUm(), scriptHUD.GetPontosJogadorDois()) >= pontoBase)
         {
             AumentarDificuldade(nivel);
-            Debug.Log("Ficou mais dificil!");
+            Debug.Log("Ficou mais dificil!" + nivel);
         }
     }
 
@@ -37,9 +37,7 @@ public class GerenciadorFase : MonoBehaviour
     {
         pontoBase += pontoBase + (int)(pontoBase * dificuldade);
         Debug.Log("Ponto Base " + pontoBase);
-        Debug.Log("Pontos do jogador Um: " + scriptHUD.GetPontosJogadorUm());
-        Debug.Log("Pontos do jogador Dois: " + scriptHUD.GetPontosJogadorDois());
-        controladorNPC.AtualizarTodosNPCs(0.01f, 0.05f);
+        controladorNPC.AtualizarTodosNPCs(0.005f, 0.025f);
         this.nivel = nivel++;
 
     }

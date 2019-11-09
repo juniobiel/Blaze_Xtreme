@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class ZumbiNPC : MonoBehaviour
 {
-    private float flDano = 0.02f;
-    private float flVida = 1.0f;
-    private float flSpeed = 0.25f;
+    private float flDano;
+    private float flVida;
+    private float flSpeed;
 
     public Animator anZumbi;
     public Vector2 goJogadorUm;
@@ -23,6 +23,10 @@ public class ZumbiNPC : MonoBehaviour
         goBaseUm = GameObject.FindGameObjectWithTag("DefenseUm").gameObject.transform.position;
 
         sptPontos = GameObject.Find("HUD").GetComponent<HUDScript>();
+
+        SetFlVida(1.0f);
+        SetFlDano(0.02f);
+        SetFlSpeed(0.25f);
 
         SetZumbiHP(1f);
     }
@@ -118,6 +122,8 @@ public class ZumbiNPC : MonoBehaviour
         {
             this.flVida = 0f;
             BarraHP.fillAmount = 0f;
+            List<GameObject> listaDeZumbi = GameObject.Find("ControladorNPCs").GetComponent<ControladorNPC>().GetListaZumbi();
+            listaDeZumbi.Remove(gameObject);
             Destroy(gameObject);
             sptPontos.SetPontosJogadorUm(3);
         }
