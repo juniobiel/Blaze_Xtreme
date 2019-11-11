@@ -83,7 +83,7 @@ public class Hoshigake : Personagem
         this.rgbdControladorJogador = gameObject.GetComponent<Rigidbody2D>();
         this.flDanoHabilidadeUm = 0.3725f;
     }
-
+    //Habilidade
     public void OnHitBox()
     {
         if (GameObject.FindGameObjectWithTag("Taeda").GetComponent<SpriteRenderer>().flipX == true)
@@ -114,7 +114,7 @@ public class Hoshigake : Personagem
                 break;
         }
     }
-
+    //fim habilidade
     private void TomaDanoZumbi(float damage)
     {
         if (damage > flBarraHP)

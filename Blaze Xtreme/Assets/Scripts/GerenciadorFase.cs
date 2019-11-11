@@ -29,7 +29,7 @@ public class GerenciadorFase : MonoBehaviour
         if(VerificaPontuacao(scriptHUD.GetPontosJogadorUm(), scriptHUD.GetPontosJogadorDois()) >= pontoBase)
         {
             AumentarDificuldade(nivel);
-            Debug.Log("Ficou mais dificil!" + nivel);
+            StartCoroutine(LvlUpTime());
         }
     }
 
@@ -40,6 +40,12 @@ public class GerenciadorFase : MonoBehaviour
     }
 
     // ------------------------------ Principais Métodos ------------------------------
+    IEnumerator LvlUpTime()
+    {
+        GameObject.Find("HUD").GetComponent<HUDScript>().lvlUped.SetActive(true);
+        yield return new WaitForSeconds(3);
+        GameObject.Find("HUD").GetComponent<HUDScript>().lvlUped.SetActive(false);
+    }
 
     void AumentarDificuldade(int nivel)
     {
