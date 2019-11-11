@@ -7,9 +7,6 @@ public class CameraScript : MonoBehaviour
 {
     public List<Transform> targets;
 
-    Transform playerUm;
-    Transform playerDois;
-
     public Vector2 offset;
     public float smoothTime = .5f;
 

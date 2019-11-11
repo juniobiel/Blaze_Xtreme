@@ -22,7 +22,7 @@ public class ControladorJogadorUm : MonoBehaviour
         personagemJogadorUm.InstanciarPersonagem("Taeda");
 
         sptMovimentacaoPersonagemUm = gameObject.AddComponent<Movimentacao>();
-        sptMovimentacaoPersonagemUm.SetsptPersonagem(personagemJogadorUm); //validar
+        sptMovimentacaoPersonagemUm.SetsptPersonagem(personagemJogadorUm);
         sptMovimentacaoPersonagemUm.SetFlModuloVelocidade(2.0f);
 
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>().AdicionarPlayers(personagemJogadorUm.transform);

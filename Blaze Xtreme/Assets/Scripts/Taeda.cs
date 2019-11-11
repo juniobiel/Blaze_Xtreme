@@ -71,7 +71,7 @@ public class Taeda : Personagem
     {
         return this.rgbdControladorJogador;
     }
-    
+
 
     // ----------------------- Métodos Principais -----------------------
     public void InstanciarPersonagem(string Nome)
@@ -109,40 +109,41 @@ public class Taeda : Personagem
         {
             case "inimigo":
                 blAttack = false;
-                float danoZumbi = GameObject.FindGameObjectWithTag("inimigo").GetComponent<ZumbiNPC>().GetFlDano();
-                TomaDanoZumbi(danoZumbi);
+                float danoZumbi = col.gameObject.GetComponent<ZumbiNPC>().GetFlDano();
+                if(intVida != 0)
+                {
+                  if(danoZumbi > flBarraHP)
+                  {
+                    intVida--;
+                    anAnimacaoTaeda.SetTrigger("perde-Vida");
+                    HUDScript BarraVida = GameObject.Find("HUD").GetComponent<HUDScript>();
+                    BarraVida.ReduzirVida(intVida);
+                    flBarraHP = 1.0f;
+                  }
+                  else if(flBarraHP > danoZumbi)
+                  {
+                    flBarraHP -= danoZumbi;
+                    anAnimacaoTaeda.SetTrigger("toma-Hit");
+                  }
+                  else
+                  {
+                    flBarraHP -= danoZumbi;
+                    anAnimacaoTaeda.SetTrigger("toma-Hit");
+                  }
+                }
+
+                else
+                {
+                  //gameOver
+                }
                 break;
         }
     }
 
-    private void TomaDanoZumbi(float damage)
-    {
-        if(damage > flBarraHP)
-        {
-            if(intVida != 0)
-            {
-                intVida--;
-                anAnimacaoTaeda.SetTrigger("perde-Vida");
-                HUDScript BarraVida = GameObject.Find("HUD").GetComponent<HUDScript>();
-                BarraVida.ReduzirVida(intVida);
-                flBarraHP = 1.0f;
-            }
-            else
-            {
-                //game Over
-            }
-        }
-        else if(flBarraHP >= damage)
-        {
-            flBarraHP -= damage;
-            anAnimacaoTaeda.SetTrigger("toma-Hit");
-        }
-
-    }
 
     public void GetBarraHP()
     {
-        BarraHP = GameObject.FindGameObjectWithTag("BarraHP").GetComponent<Image>();
+        BarraHP = gameObject.GetComponentsInChildren<Image>()[1];
         BarraHP.fillAmount = flBarraHP;
     }
 

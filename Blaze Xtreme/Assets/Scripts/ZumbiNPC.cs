@@ -20,7 +20,7 @@ public class ZumbiNPC : MonoBehaviour
 
     void Start()
     {
-        goBaseUm = GameObject.FindGameObjectWithTag("DefenseUm").gameObject.transform.position;
+        goBaseUm = GameObject.FindGameObjectWithTag("DefenseUm").gameObject.GetComponent<PolygonCollider2D>().bounds.center;
 
         sptPontos = GameObject.Find("HUD").GetComponent<HUDScript>();
 

@@ -11,10 +11,10 @@ public class GerenciadorFase : MonoBehaviour
     int nivel;
     float dificuldade;
     int pontoBase;
-    
+
     void Start()
     {
-        scriptHUD = GameObject.Find("HUD").GetComponent<HUDScript>(); 
+        scriptHUD = GameObject.Find("HUD").GetComponent<HUDScript>();
         controladorNPC = GameObject.Find("ControladorNPCs").GetComponent<ControladorNPC>();
 
         nivel = 1;
@@ -24,14 +24,22 @@ public class GerenciadorFase : MonoBehaviour
     }
     void FixedUpdate()
     {
-        
-        
+
+
         if(VerificaPontuacao(scriptHUD.GetPontosJogadorUm(), scriptHUD.GetPontosJogadorDois()) >= pontoBase)
         {
             AumentarDificuldade(nivel);
             Debug.Log("Ficou mais dificil!" + nivel);
         }
     }
+
+    // ------------------------------ Getters ------------------------------
+    public int GetNivel()
+    {
+      return this.nivel;
+    }
+
+    // ------------------------------ Principais Métodos ------------------------------
 
     void AumentarDificuldade(int nivel)
     {

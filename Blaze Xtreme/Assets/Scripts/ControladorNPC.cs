@@ -8,60 +8,100 @@ public class ControladorNPC : MonoBehaviour
     public GameObject prefabZumbi;
     float contTimer = 0;
 
-    float SpeedAtual;
-    float DanoAtual;
+    float velocidadeAtual;
+    float danoAtual;
+
+    int nivel;
+    float tempoRespawn;
 
     void Start()
     {
-        SpeedAtual = prefabZumbi.GetComponent<ZumbiNPC>().GetFlSpeed();
-        DanoAtual = prefabZumbi.GetComponent<ZumbiNPC>().GetFlDano();
+        velocidadeAtual = prefabZumbi.GetComponent<ZumbiNPC>().GetFlSpeed();
+        danoAtual = prefabZumbi.GetComponent<ZumbiNPC>().GetFlDano();
     }
     void Update()
     {
          contTimer += Time.deltaTime;
-        if (contTimer >= 6.0f)
-         {
+         nivel = GameObject.Find("Gerenciador").GetComponent<GerenciadorFase>().GetNivel();
+         verificarNivel();
+
+        if (contTimer >= tempoRespawn)
+        {
             //Spawna Zumbi
-            float x = Random.Range(-10, 10);
-            float y = Random.Range(-10, 10);
-            listaDeZumbis.Add(Instantiate(prefabZumbi, new Vector2(x, y), Quaternion.identity));
+            float[] arrayPosicoes = new float[4];
+
+            float xSub = Random.Range(-20, -10);
+            float ySub = Random.Range(-20, -10);
+            float xSup = Random.Range(10, 20);
+            float ySup = Random.Range(10, 20);
+            arrayPosicoes[0] = xSub;
+            arrayPosicoes[1] = ySub;
+            arrayPosicoes[2] = xSup;
+            arrayPosicoes[3] = ySup;
+
+            listaDeZumbis.Add(Instantiate(prefabZumbi, LocalDeSpawn(arrayPosicoes), Quaternion.identity));
             CopiaAtributosZumbi(); //atualizar ao instanciar
             contTimer -= contTimer;
          }
     }
 
+
+// ------------------------------ Principais Métodos ------------------------------
+    private Vector2 LocalDeSpawn(float[] posicoes)
+    {
+      int seletorHorizontal, seletorVertical;
+      float x, y;
+
+      seletorHorizontal = Random.Range(1, 3);
+      seletorVertical = Random.Range(1, 3);
+
+      if(seletorHorizontal == 1)
+        x = posicoes[0];
+      else
+        x = posicoes[2];
+      if(seletorVertical == 1)
+        y = posicoes[1];
+      else
+        y = posicoes[3];
+      return new Vector2(x,y);
+    }
+
+    private void verificarNivel()
+    {
+      if(nivel <= 3)
+        tempoRespawn = 10.0f;
+      else if(nivel > 3 && nivel <= 9)
+        tempoRespawn = 7.5f;
+      else
+        tempoRespawn = 5.0f;
+    }
     public void CopiaAtributosZumbi()
     {
         int indexador = listaDeZumbis.Count - 1;
-        listaDeZumbis[indexador].GetComponent<ZumbiNPC>().SetFlSpeed(SpeedAtual);
+        listaDeZumbis[indexador].GetComponent<ZumbiNPC>().SetFlSpeed(velocidadeAtual);
+        listaDeZumbis[indexador].GetComponent<ZumbiNPC>().SetFlDano(danoAtual);
     }
 
     public void AtualizarTodosNPCs(float dano, float velocidade) //verificar este metodo
     {
         ZumbiNPC scriptAtt = prefabZumbi.GetComponent<ZumbiNPC>();
 
-        dano += scriptAtt.GetFlDano();
-        velocidade += scriptAtt.GetFlSpeed();
+        float novoDano = dano + scriptAtt.GetFlDano();
+        float novaVelocidade = velocidade + scriptAtt.GetFlSpeed();
 
-        scriptAtt.SetFlDano(dano);
-        scriptAtt.SetFlSpeed(velocidade);
+        danoAtual = novoDano;
+        velocidadeAtual = novaVelocidade;
 
-        SpeedAtual = velocidade;
-        DanoAtual = dano;
+        scriptAtt.SetFlDano(danoAtual);
+        scriptAtt.SetFlSpeed(velocidadeAtual);
 
         foreach (GameObject aux in listaDeZumbis)
         {
             ZumbiNPC refNPC = aux.GetComponent<ZumbiNPC>();
 
-            refNPC.SetFlDano(dano);
-            refNPC.SetFlSpeed(velocidade);
-
-            Debug.Log("A velocidade do zumbi agora e: Dentro da lista " + velocidade);
-            Debug.Log("O dano do zumbi agora e: Dentro da lista " + dano);
-
+            refNPC.SetFlDano(danoAtual);
+            refNPC.SetFlSpeed(velocidadeAtual);
         }
-        Debug.Log("A velocidade do zumbi agora e: " + velocidade);
-        Debug.Log("O dano do zumbi agora e: " + dano);
     }
 
     public List<GameObject> GetListaZumbi()
