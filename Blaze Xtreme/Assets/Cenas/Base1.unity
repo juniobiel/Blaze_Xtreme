@@ -8798,7 +8798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6e23f4121e716a49912e90354a55a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabPersonagemDois: {fileID: 650541507523094521, guid: 1dbd773ee2c56d8409dd687f3e2201d4,
+  prefabPersonagemDois: {fileID: 8713323682126056090, guid: 1dbd773ee2c56d8409dd687f3e2201d4,
     type: 3}
   x: 0
   y: 0
