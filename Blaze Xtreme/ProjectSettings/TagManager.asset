@@ -15,6 +15,8 @@ TagManager:
   - TelaMenu
   - BarraHP
   - Hoshigake
+  - hitBoxHoshigake
+  - BarraHPHoshigake
   layers:
   - Default
   - TransparentFX

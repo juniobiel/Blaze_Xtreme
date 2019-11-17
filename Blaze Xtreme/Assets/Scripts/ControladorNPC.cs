@@ -30,10 +30,10 @@ public class ControladorNPC : MonoBehaviour
             //Spawna Zumbi
             float[] arrayPosicoes = new float[4];
 
-            float xSub = Random.Range(-20, -10);
-            float ySub = Random.Range(-20, -10);
-            float xSup = Random.Range(10, 20);
-            float ySup = Random.Range(10, 20);
+            float xSub = Random.Range(-5, -15);
+            float ySub = Random.Range(-5, -15);
+            float xSup = Random.Range(5, 15);
+            float ySup = Random.Range(5, 15);
             arrayPosicoes[0] = xSub;
             arrayPosicoes[1] = ySub;
             arrayPosicoes[2] = xSup;
@@ -78,23 +78,16 @@ public class ControladorNPC : MonoBehaviour
     public void CopiaAtributosZumbi()
     {
         int indexador = listaDeZumbis.Count - 1;
-        listaDeZumbis[indexador].GetComponent<ZumbiNPC>().SetFlSpeed(velocidadeAtual);
-        listaDeZumbis[indexador].GetComponent<ZumbiNPC>().SetFlDano(danoAtual);
+        ZumbiNPC zumbi = listaDeZumbis[indexador].GetComponent<ZumbiNPC>();
+
+        zumbi.SetFlSpeed(velocidadeAtual);
+        zumbi.SetFlDano(danoAtual);
     }
 
     public void AtualizarTodosNPCs(float dano, float velocidade) //verificar este metodo
     {
-        ZumbiNPC scriptAtt = prefabZumbi.GetComponent<ZumbiNPC>();
-
-        float novoDano = dano + scriptAtt.GetFlDano();
-        float novaVelocidade = velocidade + scriptAtt.GetFlSpeed();
-
-        danoAtual = novoDano;
-        velocidadeAtual = novaVelocidade;
-
-        scriptAtt.SetFlDano(danoAtual);
-        scriptAtt.SetFlSpeed(velocidadeAtual);
-
+        danoAtual += dano;
+        velocidadeAtual += velocidade;
         foreach (GameObject aux in listaDeZumbis)
         {
             ZumbiNPC refNPC = aux.GetComponent<ZumbiNPC>();

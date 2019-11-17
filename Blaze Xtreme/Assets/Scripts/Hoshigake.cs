@@ -7,7 +7,7 @@ public class Hoshigake : Personagem
 {
     private string strNome;
 
-    public Animator anAnimacaoTaeda;
+    public Animator anAnimacaoHoshigake;
     public Rigidbody2D rgbdControladorJogador;
 
     public Transform trHitBoxUm;
@@ -15,14 +15,21 @@ public class Hoshigake : Personagem
     public Transform trHitBoxEsquerda;
     public GameObject prefabHitBoxUmEsquerda;
 
-    private bool blAttack = false;
+    public bool blAttack = false;
     private float flDanoHabilidadeUm;
 
     private Image BarraHP;
     private float flBarraHP;
     private int intVida;
 
+    private bool blEstaMorto;
+
     // ---------------------- Setters -----------------------------------
+    public void SetBlEstaMorto(bool morreu)
+    {
+        this.blEstaMorto = morreu;
+        gameObject.SetActive(false);
+    }
     public void SetBlAttack(bool attack)
     {
         this.blAttack = attack;
@@ -42,7 +49,10 @@ public class Hoshigake : Personagem
 
 
     // ----------------------- Getters ----------------------------------
-
+    public bool GetBlEstaMorto()
+    {
+        return this.blEstaMorto;
+    }
     public int GetIntVida()
     {
         return this.intVida;
@@ -65,7 +75,7 @@ public class Hoshigake : Personagem
     }
     public override Animator GetAnimatorPersonagem()
     {
-        return this.anAnimacaoTaeda;
+        return this.anAnimacaoHoshigake;
     }
     public override Rigidbody2D GetRGBDControladorJogador()
     {
@@ -79,28 +89,29 @@ public class Hoshigake : Personagem
         this.strNome = Nome;
         this.intVida = 3;
         this.flBarraHP = 1f;
-        this.anAnimacaoTaeda = gameObject.GetComponent<Animator>();
+        this.anAnimacaoHoshigake = gameObject.GetComponent<Animator>();
         this.rgbdControladorJogador = gameObject.GetComponent<Rigidbody2D>();
         this.flDanoHabilidadeUm = 0.3725f;
+        this.blEstaMorto = false;
     }
-
-    public void OnHitBox()
+    //Habilidade
+    public void OnHitBoxHoshigake()
     {
-        if (GameObject.FindGameObjectWithTag("Taeda").GetComponent<SpriteRenderer>().flipX == true)
+        if (GameObject.FindGameObjectWithTag("Hoshigake").GetComponent<SpriteRenderer>().flipX == true)
         {
             GameObject hitEsquerda = Instantiate(prefabHitBoxUmEsquerda, trHitBoxEsquerda.position, trHitBoxEsquerda.localRotation);
             Destroy(hitEsquerda.gameObject, 0.5f);
         }
-        else if (GameObject.FindGameObjectWithTag("Taeda").GetComponent<SpriteRenderer>().flipX == false)
+        else if (GameObject.FindGameObjectWithTag("Hoshigake").GetComponent<SpriteRenderer>().flipX == false)
         {
             GameObject hitDireita = Instantiate(prefabHitBoxUm, trHitBoxUm.position, trHitBoxUm.localRotation);
             Destroy(hitDireita.gameObject, 0.5f);
         }
+        
     }
-
-    public void FimDoAtaque()
+    public void FimDoAtaqueHoshigake()
     {
-        this.blAttack = false;
+        SetBlAttack(false);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -109,40 +120,41 @@ public class Hoshigake : Personagem
         {
             case "inimigo":
                 blAttack = false;
-                float danoZumbi = GameObject.FindGameObjectWithTag("inimigo").GetComponent<ZumbiNPC>().GetFlDano();
-                TomaDanoZumbi(danoZumbi);
+                float danoZumbi = col.gameObject.GetComponent<ZumbiNPC>().GetFlDano();
+                if (intVida != 0)
+                {
+                    if (danoZumbi > flBarraHP)
+                    {
+                        intVida--;
+                        anAnimacaoHoshigake.SetTrigger("perde-Vida");
+                        HUDScript BarraVida = GameObject.Find("HUD").GetComponent<HUDScript>();
+                        BarraVida.ReduzirVida(GetStrNome(),intVida);
+                        flBarraHP = 1.0f;
+                    }
+                    else if (flBarraHP > danoZumbi)
+                    {
+                        flBarraHP -= danoZumbi;
+                        anAnimacaoHoshigake.SetTrigger("toma-Hit");
+                    }
+                    else
+                    {
+                        flBarraHP -= danoZumbi;
+                        anAnimacaoHoshigake.SetTrigger("toma-Hit");
+                    }
+                }
+
+                else
+                {
+                    SetBlEstaMorto(true);
+                }
                 break;
         }
     }
-
-    private void TomaDanoZumbi(float damage)
-    {
-        if (damage > flBarraHP)
-        {
-            if (intVida != 0)
-            {
-                intVida--;
-                anAnimacaoTaeda.SetTrigger("perde-Vida");
-                HUDScript BarraVida = GameObject.Find("HUD").GetComponent<HUDScript>();
-                BarraVida.ReduzirVida(intVida);
-                flBarraHP = 1.0f;
-            }
-            else
-            {
-                //game Over
-            }
-        }
-        else if (flBarraHP >= damage)
-        {
-            flBarraHP -= damage;
-            anAnimacaoTaeda.SetTrigger("toma-Hit");
-        }
-
-    }
+    //fim habilidade
 
     public void GetBarraHP()
     {
-        BarraHP = GameObject.FindGameObjectWithTag("BarraHP").GetComponent<Image>();
+        BarraHP = GameObject.FindGameObjectWithTag("BarraHPHoshigake").GetComponent<Image>();
         BarraHP.fillAmount = flBarraHP;
     }
 }

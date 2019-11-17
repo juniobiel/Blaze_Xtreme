@@ -9,26 +9,30 @@ public class ControladorJogadorDois : MonoBehaviour
     private Hoshigake personagemJogadorDois;
     private Movimentacao sptMovimentacaoPersonagemDois;
     public GameObject prefabPersonagemDois;
-    float contTimerEnergia;
     public float x;
     public float y;
+    HUDScript sptPontos;
 
-    
-    
+
     void Start()
     {
         prefabPersonagemDois = Instantiate(prefabPersonagemDois, new Vector2(2, 0), Quaternion.identity);
+        
         personagemJogadorDois = prefabPersonagemDois.GetComponent<Hoshigake>();
         personagemJogadorDois.InstanciarPersonagem("Hoshigake");
+
         sptMovimentacaoPersonagemDois = gameObject.AddComponent<Movimentacao>();
         sptMovimentacaoPersonagemDois.SetsptPersonagem(personagemJogadorDois);
         sptMovimentacaoPersonagemDois.SetFlModuloVelocidade(2.0f);
+
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>().AdicionarPlayers(personagemJogadorDois.transform);
-        
 
         //Define o jogador Parado
         sptMovimentacaoPersonagemDois.EstaParado(x, y);
         Debug.Log(personagemJogadorDois.GetStrNome());
+
+        sptPontos = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUDScript>();
+        sptPontos.SetPontosJogadorDois(0);
     }
 
     // Update is called once per frame

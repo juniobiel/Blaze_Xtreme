@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Taeda : Personagem
 {
@@ -22,7 +23,15 @@ public class Taeda : Personagem
     private float flBarraHP;
     private int intVida;
 
+    private bool blEstaMorto;
+
     // ---------------------- Setters -----------------------------------
+    public void SetEstaMorto(bool morreu)
+    {
+        this.blEstaMorto = morreu;
+        gameObject.SetActive(false);
+    }
+    
     public void SetBlAttack(bool attack)
     {
         this.blAttack = attack;
@@ -42,6 +51,10 @@ public class Taeda : Personagem
 
 
     // ----------------------- Getters ----------------------------------
+    public bool GetBlEstaMorto()
+    {
+        return this.blEstaMorto;
+    }
 
     public int GetIntVida()
     {
@@ -82,6 +95,7 @@ public class Taeda : Personagem
         this.flDanoHabilidadeUm = 0.3725f;
         this.anAnimacaoTaeda = gameObject.GetComponent<Animator>();
         this.rgbdControladorJogador = gameObject.GetComponent<Rigidbody2D>();
+        this.blEstaMorto = false;
     }
 
     public void OnHitBox()
@@ -117,7 +131,7 @@ public class Taeda : Personagem
                     intVida--;
                     anAnimacaoTaeda.SetTrigger("perde-Vida");
                     HUDScript BarraVida = GameObject.Find("HUD").GetComponent<HUDScript>();
-                    BarraVida.ReduzirVida(intVida);
+                    BarraVida.ReduzirVida(GetStrNome(), intVida);
                     flBarraHP = 1.0f;
                   }
                   else if(flBarraHP > danoZumbi)
@@ -134,7 +148,7 @@ public class Taeda : Personagem
 
                 else
                 {
-                  //gameOver
+                    SetEstaMorto(true);
                 }
                 break;
         }

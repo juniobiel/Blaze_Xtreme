@@ -11,6 +11,7 @@ public class ZumbiNPC : MonoBehaviour
 
     public Animator anZumbi;
     public Vector2 goJogadorUm;
+    public Vector2 goJogadorDois;
     private Vector2 goBaseUm;
     
     private Image BarraHP;
@@ -34,22 +35,53 @@ public class ZumbiNPC : MonoBehaviour
 
     private void FixedUpdate()
     {
-        goJogadorUm = GameObject.FindGameObjectWithTag("Taeda").gameObject.transform.position;
+        GameObject HoshigakePlayer = GameObject.FindGameObjectWithTag("Hoshigake"); //esta perdendo as referencias ao setar inativo.
+        GameObject TaedaPlayer = GameObject.FindGameObjectWithTag("Taeda"); //como resolver? **Usar variaveis estaticas.
+        if (!TaedaPlayer.GetComponent<Taeda>().GetBlEstaMorto())
+            goJogadorUm = TaedaPlayer.transform.position;
+        else
+            goJogadorUm = goBaseUm;
+
+        if (!HoshigakePlayer.GetComponent<Hoshigake>().GetBlEstaMorto())
+            goJogadorDois = HoshigakePlayer.transform.position;
+        else
+            goJogadorDois = goBaseUm;
 
         //se movimenta em direção ao jogador
         if (!IrParaBase())
         {
-            //valida a posicao do npc em relação ao jogador;
-            if (GetComponent<Transform>().position.x < goJogadorUm.x)
+            float distanciaJogador, distanciaJogadorDois;
+            
+            distanciaJogador = Vector2.Distance(transform.position, goJogadorUm);
+            distanciaJogadorDois = Vector2.Distance(transform.position, goJogadorDois);
+
+            if(distanciaJogador < distanciaJogadorDois)
             {
-                gameObject.transform.right = Vector2.left;
-            }
-            else
+                if (GetComponent<Transform>().position.x < goJogadorUm.x)
+                {
+                    gameObject.transform.right = Vector2.left;
+                }
+                else
+                {
+                    gameObject.transform.right = Vector2.right;
+                }
+                transform.position = Vector2.MoveTowards(transform.position,
+                        new Vector2(goJogadorUm.x, goJogadorUm.y), flSpeed * Time.deltaTime);
+            } else if( distanciaJogadorDois < distanciaJogador)
             {
-                gameObject.transform.right = Vector2.right;
+                if (GetComponent<Transform>().position.x < goJogadorDois.x)
+                {
+                    gameObject.transform.right = Vector2.left;
+                }
+                else
+                {
+                    gameObject.transform.right = Vector2.right;
+                }
+                transform.position = Vector2.MoveTowards(transform.position,
+                        new Vector2(goJogadorDois.x, goJogadorDois.y), flSpeed * Time.deltaTime);
             }
-            transform.position = Vector2.MoveTowards(transform.position,
-                    new Vector2(goJogadorUm.x, goJogadorUm.y), flSpeed * Time.deltaTime);
+
+            
         }
         else
         {
@@ -71,14 +103,14 @@ public class ZumbiNPC : MonoBehaviour
 
     bool IrParaBase()
     {
-        float distanciaJogador;
-        float distanciaBase;
+        float distanciaJogador, distanciaJogadorDois ,distanciaBase;
         distanciaJogador = Vector2.Distance(transform.position, goJogadorUm);
+        distanciaJogadorDois = Vector2.Distance(transform.position, goJogadorDois);
         distanciaBase = Vector2.Distance(transform.position, goBaseUm);
 
-        if (distanciaBase < distanciaJogador)
+        if (distanciaBase < distanciaJogador && distanciaBase < distanciaJogadorDois)
             return true;
-        else if (distanciaBase > distanciaJogador)
+        else if (distanciaBase > distanciaJogador || distanciaBase > distanciaJogadorDois)
             return false;
         else
             return false;
@@ -89,10 +121,20 @@ public class ZumbiNPC : MonoBehaviour
         switch (col.gameObject.tag)
         {
             case "hitBox1":
-                anZumbi.SetTrigger("toma-Hit");
                 float danoHabilidadeUmTaeda = GameObject.FindGameObjectWithTag("Taeda").GetComponent<Taeda>().GetFlDanoHabilidadeUm();
-                ZumbiTomaDano(danoHabilidadeUmTaeda);
+                string strNome = GameObject.FindGameObjectWithTag("Taeda").GetComponent<Taeda>().GetStrNome();
+                anZumbi.SetTrigger("toma-Hit");
+                ZumbiTomaDano(danoHabilidadeUmTaeda, strNome);
             break;
+
+            case "hitBoxHoshigake":
+                float danoHabilidadeUmHoshigake = GameObject.FindGameObjectWithTag("Hoshigake").GetComponent<Hoshigake>().GetFlDanoHabilidadeUm();
+                string strNomeDois = GameObject.FindGameObjectWithTag("Hoshigake").GetComponent<Hoshigake>().GetStrNome();
+                anZumbi.SetTrigger("toma-Hit");
+                ZumbiTomaDano(danoHabilidadeUmHoshigake, strNomeDois);
+            break;
+
+             
         }
     }
 
@@ -106,7 +148,7 @@ public class ZumbiNPC : MonoBehaviour
         this.flDano = dano;
     }
 
-    public void ZumbiTomaDano(float damage)
+    public void ZumbiTomaDano(float damage, string Nome)
     {
         if (damage == flVida)
         {
@@ -125,7 +167,10 @@ public class ZumbiNPC : MonoBehaviour
             List<GameObject> listaDeZumbi = GameObject.Find("ControladorNPCs").GetComponent<ControladorNPC>().GetListaZumbi();
             listaDeZumbi.Remove(gameObject);
             Destroy(gameObject);
-            sptPontos.SetPontosJogadorUm(3);
+            if (Nome == "Taeda")
+                sptPontos.SetPontosJogadorUm(3);
+            else
+                sptPontos.SetPontosJogadorDois(3);
         }
         else
             Debug.Log("Condição excessiva do método ZumbiTomaDano em ZumbiNPC");

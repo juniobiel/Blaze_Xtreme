@@ -9,7 +9,6 @@ public class ControladorJogadorUm : MonoBehaviour
     private Taeda personagemJogadorUm;
     private Movimentacao sptMovimentacaoPersonagemUm;
     public GameObject prefabPersonagemUm;
-    float contTimerEnergia;
     public float x;
     public float y;
     HUDScript sptPontos;
@@ -29,7 +28,6 @@ public class ControladorJogadorUm : MonoBehaviour
 
         sptPontos = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUDScript>();
         sptPontos.SetPontosJogadorUm(0);
-        sptPontos.SetPontosJogadorDois(0);
 
         //Define o jogador Parado
         sptMovimentacaoPersonagemUm.EstaParado(x, y);
@@ -39,7 +37,6 @@ public class ControladorJogadorUm : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        contTimerEnergia += Time.deltaTime;
         
         
         x = Input.GetAxis("HORIZONTAL0");

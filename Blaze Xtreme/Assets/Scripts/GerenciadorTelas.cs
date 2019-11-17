@@ -56,4 +56,8 @@ public class GerenciadorTelas : MonoBehaviour
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
         Destroy(GameObject.FindGameObjectWithTag("GerenciadorAudioMenu"));
     }
+    public void BtnJogarNovamente()
+    {
+        SceneManager.LoadScene("Base1", LoadSceneMode.Single);
+    }
 }
