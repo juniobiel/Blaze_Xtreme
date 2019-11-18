@@ -32,7 +32,7 @@ AnimationClip:
     - time: 0.8
       value: {fileID: 21300000, guid: 0dd1179f144f9ba4eb0ef9b154577e07, type: 3}
     attribute: m_Sprite
-    path: 
+    path:
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -83,14 +83,14 @@ AnimationClip:
   m_Events:
   - time: 0.8
     functionName: OnHitBoxHoshigake
-    data: 
+    data:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1
     functionName: FimDoAtaqueHoshigake
-    data: 
+    data:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

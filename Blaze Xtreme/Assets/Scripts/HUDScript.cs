@@ -54,8 +54,8 @@ public class HUDScript : MonoBehaviour
 
     public void ReduzirVida(string Nome, int vida)
     {
-        if (Nome == "Taeda") 
-        { 
+        if (Nome == "Taeda")
+        {
             vidasJogadorUm = GameObject.Find("VidasJogadorUm").GetComponentsInChildren<Image>();
             Destroy(vidasJogadorUm[vida].gameObject);
         }

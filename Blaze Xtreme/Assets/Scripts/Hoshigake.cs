@@ -107,7 +107,7 @@ public class Hoshigake : Personagem
             GameObject hitDireita = Instantiate(prefabHitBoxUm, trHitBoxUm.position, trHitBoxUm.localRotation);
             Destroy(hitDireita.gameObject, 0.5f);
         }
-        
+
     }
     public void FimDoAtaqueHoshigake()
     {
